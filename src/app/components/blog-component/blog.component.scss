@@ -1,0 +1,17 @@
+.blog-container {
+  padding: 7rem;
+
+  .index-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    gap: 1rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    .description {
+      font-size: 23px;
+      font-weight: bold;
+    }
+  }
+}

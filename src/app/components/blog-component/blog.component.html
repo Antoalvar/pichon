@@ -1,0 +1,11 @@
+<div class="blog-container">
+  <div class="index-wrapper">
+    @for (category of BLOG_CATEGORIES; track $index) {
+    <div class="section-wrapper">
+      <div class="description">
+        <span>{{ category.title }}</span>
+      </div>
+    </div>
+    }
+  </div>
+</div>

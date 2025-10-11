@@ -40,6 +40,11 @@ body {
 
   font-family: "grotesk";
   background-color: hsl(193 69% 62%);
+
+  a,
+  u {
+    text-decoration: none !important;
+  }
 }
 
 div,

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home-component',
+  selector: 'app-blog',
   imports: [],
-  templateUrl: './home-component.component.html',
-  styleUrl: './home-component.component.scss',
+  templateUrl: './blog.component.html',
+  styleUrl: './blog.component.scss',
 })
-export class HomeComponent {
+export class BlogComponent {
   public readonly BLOG_CATEGORIES = [
     {
       title: 'VIAJES',
