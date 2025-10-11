@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "grotesk";
+  src: url("./assets/fonts/alte-haas-grotesk/AlteHaasGroteskRegular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "grotesk-bold";
+  src: url("./assets/fonts/alte-haas-grotesk/AlteHaasGroteskBold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  height: auto;
+  width: auto;
+  background-color: hsl(193 69% 62%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding: 2rem;
+
+  font-family: "grotesk";
+  background-color: hsl(193 69% 62%);
+}
+
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}

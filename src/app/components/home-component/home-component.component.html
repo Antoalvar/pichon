@@ -1,0 +1,18 @@
+<div class="home-container-wrapper">
+  <div class="home-central-container">
+    <div class="home-central"></div>
+  </div>
+  <div class="blog-sections-wrapper">
+    @for (category of BLOG_CATEGORIES; track $index) {
+    <div class="section-wrapper">
+      <div class="number">
+        <span>({{ category.order }})</span>
+      </div>
+
+      <div class="description">
+        <span>{{ category.title }}</span>
+      </div>
+    </div>
+    }
+  </div>
+</div>

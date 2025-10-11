@@ -1,0 +1,68 @@
+$header-logotype-height: 2rem;
+
+.pichon-app {
+  background-color: hsl(193 69% 62%);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .actions-board {
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.9rem;
+    font-weight: bold;
+
+    span {
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.85);
+      font-family: "grotesk-bold";
+      font-style: normal;
+      line-height: 1.3;
+      letter-spacing: 0em;
+      display: block;
+    }
+  }
+
+  .logotype-container {
+    padding: 0.5rem;
+    width: 40%;
+
+    .net-taric-logotype {
+      width: 100%;
+      height: $header-logotype-height;
+      background-image: url("../assets/images/Pichon-logotipo_Negro.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.footer {
+  margin-top: 5rem;
+
+  .subscribe-button-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .subscribe-button {
+      padding: 0.5rem 1rem;
+      border-radius: 0.8rem;
+      background-color: black;
+      color: white;
+    }
+  }
+
+  .copyright {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: smaller;
+
+    .c-text {
+      margin-left: 0.5rem;
+    }
+  }
+}

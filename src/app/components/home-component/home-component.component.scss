@@ -1,0 +1,26 @@
+.home-central-container {
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+
+  .home-central {
+    background-image: url("../../../assets/images/Home_image.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 17rem;
+    width: 47%;
+  }
+}
+
+.blog-sections-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+
+  .section-wrapper {
+    display: flex;
+    gap: 0.2rem;
+    font-family: "grotesk-bold";
+    font-size: large;
+  }
+}
