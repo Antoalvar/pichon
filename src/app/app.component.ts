@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,4 +10,9 @@ import { RouterLink } from '@angular/router';
 })
 export class AppComponent {
   title = 'pichon-front';
+  #router = inject(Router);
+
+  navigateTHome() {
+    this.#router.navigate(['/home']);
+  }
 }
