@@ -3,7 +3,9 @@
     <div class="home-central"></div>
   </div>
   <div class="blog-sections-wrapper">
-    @for (category of BLOG_CATEGORIES; track $index) {
+    @for (category of BLOG_CATEGORIES; track $index) { @if ($index !== 0) {
+    <b> • </b>
+    }
     <div class="section-wrapper">
       <div class="number">
         <span>({{ category.order }})</span>

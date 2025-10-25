@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { UsePostsService } from './hooks/use-posts.service';
+import { BlogCategory } from '../models/blogTypes';
 
 @Component({
   selector: 'app-blog',
@@ -7,30 +9,20 @@ import { Component } from '@angular/core';
   styleUrl: './blog.component.scss',
 })
 export class BlogComponent {
-  public readonly BLOG_CATEGORIES = [
-    {
-      title: 'VIAJES',
-      order: '1',
-    },
-    {
-      title: 'JUEGOS',
-      order: '2',
-    },
-    {
-      title: 'PLANES',
-      order: '3',
-    },
-    {
-      title: 'PUBLICACIONES',
-      order: '4',
-    },
-    {
-      title: 'ARTE',
-      order: '5',
-    },
-    {
-      title: 'DISEÑO',
-      order: '6',
-    },
-  ];
+  public readonly IMAGE_FOLDER = '../../../assets/images';
+
+  #usePosts = inject(UsePostsService);
+
+  posts = computed(() => this.#usePosts.filteredPosts());
+  categories = computed(() => this.#usePosts.categories());
+  selectedCategory = signal<string>('');
+
+  selectSection(category: BlogCategory) {
+    const categoryToUpdate =
+      category.title.toLocaleLowerCase() === this.selectedCategory()
+        ? ''
+        : category.title.toLocaleLowerCase();
+    this.selectedCategory.set(categoryToUpdate);
+    this.#usePosts.updateCategory(categoryToUpdate);
+  }
 }

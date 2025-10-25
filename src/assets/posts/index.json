@@ -1,0 +1,34 @@
+[
+  {
+    "id": "san_sebastian",
+    "img": "san_sebastian.png",
+    "title": "Viaje a San Sebastián",
+    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
+    "categories": ["viajes", "juegos"],
+    "prod": true
+  },
+  {
+    "id": "san_sebastian",
+    "img": "san_sebastian.png",
+    "title": "Viaje a San Sebastián",
+    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
+    "categories": ["viajes"],
+    "prod": true
+  },
+  {
+    "id": "san_sebastian",
+    "img": "san_sebastian.png",
+    "title": "Viaje a San Sebastián",
+    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
+    "categories": ["publicaciones"],
+    "prod": true
+  },
+  {
+    "id": "san_sebastian",
+    "img": "san_sebastian.png",
+    "title": "Viaje a San Sebastián",
+    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
+    "categories": ["juegos", "planes"],
+    "prod": true
+  }
+]

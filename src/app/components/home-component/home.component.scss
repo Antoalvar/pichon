@@ -17,12 +17,16 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
+  align-items: center;
+
+  b {
+    font-size: 1.5rem;
+  }
 
   .section-wrapper {
     display: flex;
     gap: 0.2rem;
     font-family: "grotesk";
-    font-weight: bold;
-    font-size: large;
+    font-weight: 800;
   }
 }

@@ -1,15 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
 @font-face {
   font-family: "grotesk";
-  src: url("./assets/fonts/alte-haas-grotesk/AlteHaasGroteskRegular.ttf");
-  font-weight: normal;
-  font-style: normal;
+  src: url("./assets/fonts/host_grotesk/HostGrotesk-VariableFont_wght.ttf")
+    format("opentype");
 }
 
 body {
   height: auto;
   width: auto;
   background-color: hsl(193 69% 62%);
+  font-family: "Alte Haas Grotesk", sans-serif;
 }
 
 *,
@@ -32,6 +33,10 @@ body {
   padding: 2rem;
 
   font-family: "grotesk";
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: 0em;
+  font-size: 1.1rem;
   background-color: hsl(193 69% 62%);
 
   a,

@@ -1,9 +1,32 @@
 <div class="blog-container">
   <div class="index-wrapper">
-    @for (category of BLOG_CATEGORIES; track $index) {
-    <div class="section-wrapper">
-      <div class="description">
+    @for (category of categories(); track $index) {
+    <div class="section-wrapper" (click)="selectSection(category)">
+      <div
+        class="description"
+        [class.selected]="category.title.toLowerCase() === selectedCategory()"
+      >
         <span>{{ category.title }}</span>
+      </div>
+    </div>
+    }
+  </div>
+  <div class="posts-wrapper">
+    @for (post of posts(); track $index) {
+    <div class="post-wrap">
+      <div class="img-wrapper">
+        <img src="{{ `../../../assets/images/${post.img}` }}" />
+      </div>
+      <div class="categories">
+        @for (category of post.categories; track $index) {
+        <p>{{ category }}</p>
+        }
+      </div>
+      <div class="title">
+        <h2>{{ post.title.toUpperCase() }}</h2>
+      </div>
+      <div class="abstract">
+        <p>{{ post.abstract }}</p>
       </div>
     </div>
     }
