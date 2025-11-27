@@ -13,7 +13,7 @@
   </div>
   <div class="posts-wrapper">
     @for (post of posts(); track $index) {
-    <div class="post-wrap">
+    <div class="post-wrap" (click)="navigateToPost(post)">
       <div class="img-wrapper">
         <img src="{{ `../../../assets/images/${post.img}` }}" />
       </div>

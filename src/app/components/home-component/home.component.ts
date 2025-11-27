@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UsePostsService } from '../blog-component/hooks/use-posts.service';
+import { BlogCategory } from '../models/blogTypes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,30 +10,14 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  public readonly BLOG_CATEGORIES = [
-    {
-      title: 'VIAJES',
-      order: '1',
-    },
-    {
-      title: 'JUEGOS',
-      order: '2',
-    },
-    {
-      title: 'PLANES',
-      order: '3',
-    },
-    {
-      title: 'PUBLICACIONES',
-      order: '4',
-    },
-    {
-      title: 'ARTE',
-      order: '5',
-    },
-    {
-      title: 'DISEÑO',
-      order: '6',
-    },
-  ];
+  #usePosts = inject(UsePostsService);
+  #router = inject(Router);
+
+  categories = this.#usePosts.categories;
+  selectedCategory = this.#usePosts.selectedCategory;
+
+  selectSection(category: BlogCategory) {
+    this.#usePosts.updateSelectedCategory(category);
+    this.#router.navigate(['/blog']);
+  }
 }

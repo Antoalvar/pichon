@@ -19,6 +19,9 @@ export class UsePostsService {
   private readonly _categories = signal<BlogCategory[]>([]);
   readonly categories = this._categories.asReadonly();
 
+  private readonly _selectedCategory = signal<string>('');
+  readonly selectedCategory = this._selectedCategory.asReadonly();
+
   constructor() {
     this.#getPostsIndex().subscribe((data: BlogIndexItem[]) => {
       this._posts.set(data);
@@ -33,6 +36,11 @@ export class UsePostsService {
     return this.#http
       .get('../../../assets/posts/index.json')
       .pipe(takeUntilDestroyed());
+  }
+
+  getPostsById(id: string): Observable<any> {
+    const url = `../../../assets/posts/${id}.json`;
+    return this.#http.get(url).pipe(takeUntilDestroyed());
   }
 
   #getCategories(): Observable<any> {
@@ -54,5 +62,15 @@ export class UsePostsService {
         this._filteredPosts.set(this._posts());
       }
     }
+  }
+
+  updateSelectedCategory(category: BlogCategory) {
+    const categoryToUpdate =
+      category.title.toLocaleLowerCase() === this.selectedCategory()
+        ? ''
+        : category.title.toLocaleLowerCase();
+
+    this._selectedCategory.set(categoryToUpdate);
+    this.updateCategory(categoryToUpdate);
   }
 }

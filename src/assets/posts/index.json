@@ -1,34 +1,50 @@
 [
   {
     "id": "san_sebastian",
-    "img": "san_sebastian.png",
+    "img": "san_sebastian.jpg",
     "title": "Viaje a San Sebastián",
-    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
+    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles ...",
     "categories": ["viajes", "juegos"],
     "prod": true
   },
   {
-    "id": "san_sebastian",
-    "img": "san_sebastian.png",
-    "title": "Viaje a San Sebastián",
-    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
-    "categories": ["viajes"],
+    "id": "kapla",
+    "img": "grapat.jpg",
+    "title": "KAPLAy GRAPATy GRIMMS",
+    "abstract": "Es fascinante todo lo que puede construirse con unas pequeñas tablillas de madera de pino. Durante un viaje  por el sur de Francia en los años 60, Tom van der Bruggen creó sus propios elementos de construcción para realizar ...",
+    "categories": ["juegos"],
     "prod": true
   },
   {
-    "id": "san_sebastian",
-    "img": "san_sebastian.png",
-    "title": "Viaje a San Sebastián",
-    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
+    "id": "mejores_festivales_teatro",
+    "img": "circo.jpg",
+    "title": "MEJORES FESTIVALES DE TEATRO DE CALLE Y ESCÉNICAS PARA IR CON NIÑOS EN ESPAÑA",
+    "abstract": "Festival de títeres desde 1985. Con compañías de todo el mundo, suele tener una selección buenísima. El circo de las pulgases un mítico imperdible. Una buena idea es participar como voluntario para poder vivir desde dentro los ...",
+    "categories": ["planes"],
+    "prod": true
+  },
+  {
+    "id": "arte_de_los_cuentos",
+    "img": "japon.jpg",
+    "title": "EL ARTE DE LOS CUENTOS SIN PALABRAS",
+    "abstract": "Los cuentos sin palabras son álbumes ilustrados que permiten a los niños pequeños seguir la historia sin la necesidad de un adulto. Además, siempre hay infinitas lecturas. Volver a descubrir y fijarse en cosas diferentes ...",
     "categories": ["publicaciones"],
     "prod": true
   },
   {
-    "id": "san_sebastian",
-    "img": "san_sebastian.png",
-    "title": "Viaje a San Sebastián",
-    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles",
-    "categories": ["juegos", "planes"],
+    "id": "carruseles",
+    "img": "petit_pierre_2.jpg",
+    "title": "LOS CARRUSELES DE PETIT PIERRE Y LA FABOULASERIE",
+    "abstract": "La obra de Petit Pierre recuerda a La Catedral de San Justo, de Mejorada del Campo (Madrid). Una catedral hecha a base de basura, construida por un solo hombre, Justo Gallego, durante 60 años, con sus propias manos...",
+    "categories": ["arte"],
+    "prod": true
+  },
+  {
+    "id": "floris_hovers",
+    "img": "cars.jpg",
+    "title": "LOS ICÓNICOS COCHES DE FLORIS HOVERS",
+    "abstract": "Floris Hovers (1976) es un diseñador y artesano holandés. Vive en Raamsdonk, donde fundó su estudio en 2006 en la antigua fábrica de hormigón de su padre. Su afán por trabajar con las manos viene de familia: carpinteros...",
+    "categories": ["arte"],
     "prod": true
   }
 ]

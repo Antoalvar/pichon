@@ -7,6 +7,7 @@ $header-logotype-height: 2.3rem;
 .header {
   display: flex;
   justify-content: space-between;
+  padding: 0 7rem;
 
   .actions-board {
     padding: 0.5rem;
@@ -30,7 +31,7 @@ $header-logotype-height: 2.3rem;
     padding: 0.5rem;
     width: 40%;
 
-    .net-taric-logotype {
+    .pichon-logotype {
       width: 100%;
       cursor: pointer;
       height: $header-logotype-height;
@@ -42,17 +43,15 @@ $header-logotype-height: 2.3rem;
 }
 
 .footer {
-  margin-top: 5rem;
-  bottom: 2rem;
-  position: fixed;
-  left: 0;
-  right: 0;
-  margin-inline: auto;
-  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 
   .subscribe-button-wrapper {
     display: flex;
     justify-content: center;
+    padding-bottom: 1rem;
 
     .subscribe-button {
       padding: 0.5rem 1rem;
@@ -65,7 +64,7 @@ $header-logotype-height: 2.3rem;
   }
 
   .copyright {
-    margin-top: 2rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
