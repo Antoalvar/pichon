@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { DownloadPdf } from './services/downloadPdf.service';
+import { SubscribeComponent } from './components/subscribe-component/subscribe.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, SubscribeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -14,8 +16,18 @@ export class AppComponent {
   #router = inject(Router);
   #downloadPdf = inject(DownloadPdf);
 
+  isSubscribeModalVisible: boolean = true;
+
   navigateTHome() {
     this.#router.navigate(['/home']);
+  }
+
+  hideModal() {
+    this.isSubscribeModalVisible = false;
+  }
+
+  showModal() {
+    this.isSubscribeModalVisible = true;
   }
 
   downloadPdf() {

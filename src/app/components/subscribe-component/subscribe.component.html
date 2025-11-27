@@ -1,0 +1,33 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="close-button">
+      <span class="material-symbols-outlined" (click)="closeModal()">
+        close
+      </span>
+    </div>
+    <div class="content-wrapper">
+      <h2>Suscribete a nuestra newsletter</h2>
+      <p>Descubre todas las novedades</p>
+
+      <div class="form-wrapper">
+        <div class="email-label">
+          <label for="email">Email*</label>
+        </div>
+
+        <input
+          [formControl]="subscriptionEmail"
+          type="email"
+          id="email"
+          pattern=".+@example\.com"
+          size="30"
+          required
+        />
+      </div>
+      <div class="subscribe-button-wrapper">
+        <div class="subscribe-button" (click)="sendSubscriptionEmail()">
+          <span>Suscríbete Ahora</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

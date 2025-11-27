@@ -2,24 +2,24 @@
   {
     "id": "san_sebastian",
     "img": "san_sebastian.jpg",
-    "title": "Viaje a San Sebastián",
-    "abstract": "La verdad es que todas las ciudades del norte son una maravilla para ir con niños. San Sebastián es una gozada, simplemente pasear y sus playas ya son suficientes. Os dejo por aquí nuestras recomendaciones imprescindibles ...",
-    "categories": ["viajes", "juegos"],
+    "title": "San Sebastián y San Juan de Luz con niños",
+    "abstract": "Os dejamos por aquí nuestras recomendaciones imprescindibles con niños: Tabakalera, Wow Park, San Juan de Luz y el Museo Chillida.",
+    "categories": ["viajes"],
     "prod": true
   },
   {
     "id": "kapla",
     "img": "grapat.jpg",
-    "title": "KAPLAy GRAPATy GRIMMS",
-    "abstract": "Es fascinante todo lo que puede construirse con unas pequeñas tablillas de madera de pino. Durante un viaje  por el sur de Francia en los años 60, Tom van der Bruggen creó sus propios elementos de construcción para realizar ...",
+    "title": "Piezas sueltas: KAPLA, GRAPAT y GRIMMS",
+    "abstract": "Hay una buena frase de Tonucci que nos encanta: 'Un buen jueguete es aquel que, sin ser nada en concreto, puede ser todo'.",
     "categories": ["juegos"],
     "prod": true
   },
   {
     "id": "mejores_festivales_teatro",
     "img": "circo.jpg",
-    "title": "MEJORES FESTIVALES DE TEATRO DE CALLE Y ESCÉNICAS PARA IR CON NIÑOS EN ESPAÑA",
-    "abstract": "Festival de títeres desde 1985. Con compañías de todo el mundo, suele tener una selección buenísima. El circo de las pulgases un mítico imperdible. Una buena idea es participar como voluntario para poder vivir desde dentro los ...",
+    "title": "MEJORES FESTIVALES PARA IR CON NIÑOS EN ESPAÑA",
+    "abstract": "Aquí va un pequeño intento de selección de festivales potentes para familias en España. Muchas veces no nos entermaos de todo lo que hay.",
     "categories": ["planes"],
     "prod": true
   },
@@ -27,7 +27,7 @@
     "id": "arte_de_los_cuentos",
     "img": "japon.jpg",
     "title": "EL ARTE DE LOS CUENTOS SIN PALABRAS",
-    "abstract": "Los cuentos sin palabras son álbumes ilustrados que permiten a los niños pequeños seguir la historia sin la necesidad de un adulto. Además, siempre hay infinitas lecturas. Volver a descubrir y fijarse en cosas diferentes ...",
+    "abstract": "Los cuentos sin palabras son álbumes ilustrados que permiten a los niños pequeños seguir la historia sin la necesidad de un adulto.",
     "categories": ["publicaciones"],
     "prod": true
   },
@@ -35,7 +35,7 @@
     "id": "carruseles",
     "img": "petit_pierre_2.jpg",
     "title": "LOS CARRUSELES DE PETIT PIERRE Y LA FABOULASERIE",
-    "abstract": "La obra de Petit Pierre recuerda a La Catedral de San Justo, de Mejorada del Campo (Madrid). Una catedral hecha a base de basura, construida por un solo hombre, Justo Gallego, durante 60 años, con sus propias manos...",
+    "abstract": "La obra de Petit Pierre recuerda a La Catedral de San Justo, de Mejorada del Campo (Madrid). Una catedral hecha a base de basura...",
     "categories": ["arte"],
     "prod": true
   },
@@ -43,7 +43,7 @@
     "id": "floris_hovers",
     "img": "cars.jpg",
     "title": "LOS ICÓNICOS COCHES DE FLORIS HOVERS",
-    "abstract": "Floris Hovers (1976) es un diseñador y artesano holandés. Vive en Raamsdonk, donde fundó su estudio en 2006 en la antigua fábrica de hormigón de su padre. Su afán por trabajar con las manos viene de familia: carpinteros...",
+    "abstract": "Floris Hovers (1976) es un diseñador y artesano holandés. que descubrimos en el maravilloso libro de 'Design for Children', de Phaidon",
     "categories": ["arte"],
     "prod": true
   }

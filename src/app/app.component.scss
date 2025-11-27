@@ -1,13 +1,13 @@
 $header-logotype-height: 2.3rem;
 
-.pichon-app {
-  background-color: hsl(193 69% 62%);
+:host {
+  max-width: 1200px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 0 7rem;
+  padding: 0 1rem;
 
   .actions-board {
     padding: 0.5rem;

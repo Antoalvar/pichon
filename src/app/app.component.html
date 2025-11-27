@@ -11,18 +11,17 @@
 
 <div class="footer">
   <div class="subscribe-button-wrapper">
-    <div class="subscribe-button">
+    <div class="subscribe-button" (click)="showModal()">
       <span>Suscríbete Ahora</span>
     </div>
   </div>
   <div class="actions-footer">
     <div class="copyright">
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=copyright"
-      />
       <span class="material-symbols-outlined"> copyright </span>
       <span class="c-text"> 2025, Pichón</span>
     </div>
   </div>
 </div>
+@if (isSubscribeModalVisible) {
+<app-subscribe (close)="hideModal()"></app-subscribe>
+}
