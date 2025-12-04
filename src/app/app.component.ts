@@ -16,7 +16,7 @@ export class AppComponent {
   #router = inject(Router);
   #downloadPdf = inject(DownloadPdf);
 
-  isSubscribeModalVisible: boolean = true;
+  isSubscribeModalVisible: boolean = false;
 
   navigateTHome() {
     this.#router.navigate(['/home']);

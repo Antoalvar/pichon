@@ -29,11 +29,9 @@ html {
 
 html,
 body {
-  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  padding: 2rem;
 
   font-family: "grotesk";
   font-style: normal;
@@ -46,6 +44,18 @@ body {
   u {
     text-decoration: none !important;
   }
+}
+
+body {
+  padding: 2rem;
+}
+
+@media (max-width: 450px) {
+  html,
+  body {
+    padding: 1rem;
+  }
+  /* … */
 }
 
 div,

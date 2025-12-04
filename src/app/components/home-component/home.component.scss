@@ -17,7 +17,6 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  align-items: center;
 
   b {
     font-size: 1.5rem;
@@ -29,5 +28,27 @@
     font-family: "grotesk";
     font-weight: 800;
     cursor: pointer;
+    align-items: center;
   }
+}
+
+@media (max-width: 450px) {
+  .home-central-container {
+    padding: 5rem 0;
+
+    .home-central {
+      height: 9rem;
+    }
+  }
+
+  .blog-sections-wrapper {
+    gap: 0.7rem;
+    font-weight: 600 !important;
+    font-size: initial;
+  }
+
+  .section-wrapper {
+  }
+
+  /* … */
 }

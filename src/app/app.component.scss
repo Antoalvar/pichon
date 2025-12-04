@@ -2,15 +2,23 @@ $header-logotype-height: 2.3rem;
 
 :host {
   max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
+  align-items: center;
+  background-color: rgb(91, 195, 225);
+  position: sticky;
+  top: 0;
 
   .actions-board {
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     display: flex;
     gap: 0.9rem;
     font-weight: bold;
@@ -28,7 +36,7 @@ $header-logotype-height: 2.3rem;
   }
 
   .logotype-container {
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     width: 40%;
 
     .pichon-logotype {
@@ -40,6 +48,13 @@ $header-logotype-height: 2.3rem;
       background-repeat: no-repeat;
     }
   }
+}
+
+@media (max-width: 450px) {
+  .header {
+    padding: 0;
+  }
+  /* … */
 }
 
 .footer {
@@ -60,6 +75,16 @@ $header-logotype-height: 2.3rem;
       color: white;
       font-size: 1.2rem;
       font-weight: 700;
+    }
+  }
+
+  .instagram-icon {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      height: 100%;
     }
   }
 
