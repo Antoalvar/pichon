@@ -3,11 +3,10 @@
     <div class="home-central"></div>
   </div>
   <div class="blog-sections-wrapper">
-    @for (category of categories(); track $index) {
+    @for (category of categories(); track $index) { @if ($index !== 0) {
+    <b> • </b>
+    }
     <div class="section-wrapper" (click)="selectSection(category)">
-      @if ($index !== 0) {
-      <b> • </b>
-      }
       <div class="number">
         <span>({{ category.order }})</span>
       </div>

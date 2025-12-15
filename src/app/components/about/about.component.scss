@@ -1,27 +1,23 @@
-@use "../../../../../sass/article.scss" as *;
+@use "../../../sass/article.scss" as *;
 
 :host {
   display: flex;
   justify-content: center;
 }
 
-.post-wrapper {
+.about-wrapper {
   @extend .wrapper;
 }
 
-.post-wrap {
+.about-wrap {
   @extend .wrap;
 }
 
 @media (max-width: 450px) {
-  .post-wrapper {
-    max-width: 100%;
-    width: 100%;
-  }
-  .post-wrap {
+  .about-wrap {
     max-width: 100%;
     padding: 1em 0rem;
-    width: 100%;
+    max-width: 100%;
   }
   /* … */
 }

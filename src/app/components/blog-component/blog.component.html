@@ -1,6 +1,8 @@
 <div class="blog-container">
   <div class="index-wrapper">
-    @for (category of categories(); track $index) {
+    @for (category of categories(); track $index) { @if ($index !== 0) {
+    <b> • </b>
+    }
     <div class="section-wrapper" (click)="selectSection(category)">
       <div
         class="description"
@@ -20,7 +22,7 @@
       <div class="post-info">
         <div class="categories">
           @for (category of post.categories; track $index) {
-          <p>{{ category }}</p>
+          <p>{{ category.toUpperCase() }}</p>
           }
         </div>
         <div class="title">

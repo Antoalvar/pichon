@@ -12,9 +12,20 @@
 
         <div class="form-wrapper">
           <div class="email-label">
+            <label for="email">Nombre*</label>
+          </div>
+          <input
+            [formControl]="subscriptionName"
+            type="text"
+            id="name"
+            pattern="Jane Doe"
+            size="30"
+            required
+          />
+
+          <div class="email-label">
             <label for="email">Email*</label>
           </div>
-
           <input
             [formControl]="subscriptionEmail"
             type="email"

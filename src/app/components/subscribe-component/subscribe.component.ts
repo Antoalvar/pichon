@@ -11,10 +11,10 @@ export class SubscribeComponent {
   close = output<void>();
 
   subscriptionEmail = new FormControl('');
+  subscriptionName = new FormControl('');
 
   closeModal(): void {
     this.close.emit();
-    console.log(this.subscriptionEmail.value);
   }
 
   sendSubscriptionEmail() {}
