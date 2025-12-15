@@ -91,6 +91,14 @@
   .blog-container {
     padding: 0rem;
 
+    .index-wrapper {
+      gap: 0.1rem;
+
+      .section-wrapper .description {
+        font-size: 20px;
+      }
+    }
+
     .posts-wrapper .blog-item-wrap {
       min-width: 100%;
       max-width: 100%;
