@@ -41,4 +41,11 @@ export class AppComponent {
       URL.revokeObjectURL(objectUrl);
     });
   }
+
+  openInstagram() {
+    window.open(
+      'https://www.instagram.com/pichonrevista?igsh=MTJlNWY5ejU4ajg1Mg%3D%3D&utm_source=qr',
+      '_blank'
+    );
+  }
 }
