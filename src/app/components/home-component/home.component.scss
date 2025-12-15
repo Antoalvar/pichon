@@ -42,9 +42,14 @@
   }
 
   .blog-sections-wrapper {
-    gap: 0.7rem;
+    gap: 0;
     font-weight: 600 !important;
     font-size: initial;
+    line-height: 1.2rem;
+  }
+
+  .description {
+    padding-right: 0.2rem;
   }
 
   .section-wrapper {
