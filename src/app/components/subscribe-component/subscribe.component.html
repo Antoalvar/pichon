@@ -10,6 +10,7 @@
         <h2>Suscribete a nuestra newsletter</h2>
         <p>Descubre todas las novedades</p>
 
+        @if (!subscriptionSuccess()) {
         <div class="form-wrapper">
           <div class="email-label">
             <label for="email">Nombre*</label>
@@ -40,6 +41,9 @@
             <span>Suscríbete</span>
           </div>
         </div>
+        } @else {
+        <p>Suscripción realizada con éxito. Gracias!!</p>
+        }
       </div>
     </div>
   </div>
