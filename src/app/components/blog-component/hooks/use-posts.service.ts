@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BlogCategory, BlogIndexItem } from '../../models/blogTypes';
 
@@ -23,13 +23,20 @@ export class UsePostsService {
   readonly selectedCategory = this._selectedCategory.asReadonly();
 
   constructor() {
-    this.#getPostsIndex().subscribe((data: BlogIndexItem[]) => {
-      this._posts.set(data);
-      this._filteredPosts.set(data);
-    });
-    this.#getCategories().subscribe((data: BlogCategory[]) => {
-      this._categories.set(data);
-    });
+    this.#getPostsIndex()
+      .pipe(
+        map((posts: BlogIndexItem[]) => posts.filter((post) => !!post.prod)),
+        takeUntilDestroyed()
+      )
+      .subscribe((data: BlogIndexItem[]) => {
+        this._posts.set(data);
+        this._filteredPosts.set(data);
+      });
+    this.#getCategories()
+      .pipe(takeUntilDestroyed())
+      .subscribe((data: BlogCategory[]) => {
+        this._categories.set(data);
+      });
   }
 
   #getPostsIndex(): Observable<any> {
