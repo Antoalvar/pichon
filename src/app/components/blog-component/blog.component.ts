@@ -1,6 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UsePostsService } from './hooks/use-posts.service';
-import { BlogCategory, BlogIndexItem } from '../models/blogTypes';
+import { BlogCategory, BlogIndexItem } from '../../models/blogTypes';
 import { Router } from '@angular/router';
 
 @Component({

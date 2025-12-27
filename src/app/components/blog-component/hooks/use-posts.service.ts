@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { filter, map, Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BlogCategory, BlogIndexItem } from '../../models/blogTypes';
+import { BlogCategory, BlogIndexItem } from '../../../models/blogTypes';
 
 @Injectable({
   providedIn: 'root',

@@ -1,0 +1,103 @@
+$header-logotype-height: 2.3rem;
+
+:host {
+  max-width: 1200px;
+  position: sticky;
+  top: 0;
+}
+
+a {
+  cursor: pointer;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: "Alte_haas_bold";
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: 0em;
+  display: block;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  align-items: center;
+  background-color: rgb(91, 195, 225);
+  position: sticky;
+  top: 0;
+
+  .actions-board {
+    padding: 0.5rem 0;
+    display: flex;
+    gap: 0.9rem;
+    font-weight: bold;
+  }
+
+  .logotype-container {
+    padding: 0.5rem 0;
+    width: 40%;
+
+    .pichon-logotype {
+      width: 100%;
+      cursor: pointer;
+      height: $header-logotype-height;
+      background-image: url("../../../assets/images/Pichon-logotipo_Negro.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .header {
+    padding: 0;
+  }
+  /* … */
+}
+
+.hidden-navbar {
+  /* Posicionamiento fijo sobre el contenido */
+  position: fixed;
+  top: 85px; /* Ajusta este valor a la altura exacta de tu .header */
+  right: 0;
+  width: 100%; /* Ocupa todo el ancho en móvil, o define un ancho como 250px */
+  height: calc(100vh - 80px); /* Ocupa el resto de la pantalla */
+  background-color: rgb(91, 195, 225);
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+
+  /* Estado Inicial: Fuera de la pantalla (Derecha) */
+  transform: translateX(100%);
+  visibility: hidden;
+
+  /* Transición de hardware optimizada */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+
+  /* Layout de los links */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los links horizontalmente */
+  justify-content: center; /* Centra los links verticalmente */
+  gap: 2rem; /* Espacio entre links sin usar bordes */
+}
+
+/* Estado cuando el menú está abierto */
+.hidden-navbar.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* Estilos de los links (Limpio) */
+.hidden-navbar a {
+  text-decoration: none;
+  //color: white; /* O el color que contraste mejor con el azul */
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Evitar scroll en el cuerpo cuando el menú esté abierto (Opcional) */
+:host-context(body.menu-open) {
+  overflow: hidden;
+}
