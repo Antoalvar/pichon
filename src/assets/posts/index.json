@@ -1,5 +1,13 @@
 [
   {
+    "id": "revistas_niños",
+    "img": "PICH-postsJI.png",
+    "title": "REVISTAS PARA NIÑOS QUE NOS ENCANTAN",
+    "abstract": "Os dejamos por aquí nuestras recomendaciones imprescindibles de revistas para niños que nos encantan (y una extra sobre maternidad real)",
+    "categories": ["publicaciones"],
+    "prod": true
+  },
+  {
     "id": "san_sebastian",
     "img": "san_sebastian.jpg",
     "title": "San Sebastián y San Juan de Luz con niños",
