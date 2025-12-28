@@ -5,14 +5,14 @@ $header-logotype-height: 2.3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 0 0.5rem 0;
 
   .subscribe-button-wrapper {
     display: flex;

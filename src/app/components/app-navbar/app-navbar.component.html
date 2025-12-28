@@ -13,9 +13,11 @@
   ></app-menu-button>
   }
 </div>
+@if (isHandset()) {
 <div class="hidden-navbar" [class.is-open]="hiddenMenuOn()">
   <ng-container [ngTemplateOutlet]="menuItems" />
 </div>
+}
 
 <ng-template #menuItems>
   <a (click)="startDownloadPdf()">Agenda</a>

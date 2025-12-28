@@ -20,7 +20,7 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 3rem 1rem 1rem 1rem;
   align-items: center;
   background-color: rgb(91, 195, 225);
   position: sticky;
@@ -48,15 +48,21 @@ a {
   }
 }
 
+@media (max-width: 959px) {
+  .header {
+    padding: 2rem 1rem 1rem 1rem;
+  }
+  /* … */
+}
+
 @media (max-width: 450px) {
   .header {
-    padding: 0;
+    padding: 2rem 0 0 0;
   }
   /* … */
 }
 
 .hidden-navbar {
-  /* Posicionamiento fijo sobre el contenido */
   position: fixed;
   top: 85px; /* Ajusta este valor a la altura exacta de tu .header */
   right: 0;

@@ -8,6 +8,14 @@
     "prod": false
   },
   {
+    "id": "entrevista_circulari",
+    "img": "Circulari35.jpg",
+    "title": "CIRCULARI, MUEBLES PARA HOGARES CON NIÑOS",
+    "abstract": "Entrevistamos a Circulari, nueva marca española de muebles basada en un modelo de desarrollo sostenible y circular.",
+    "categories": ["diseño"],
+    "prod": true
+  },
+  {
     "id": "san_sebastian",
     "img": "san_sebastian.jpg",
     "title": "San Sebastián y San Juan de Luz con niños",

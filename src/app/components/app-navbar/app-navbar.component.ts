@@ -61,10 +61,11 @@ export class NavbarComponent {
   }
 
   closeHiddenMenu() {
-    this.hiddenMenuOn.update((isOpen) => !isOpen);
+    this.hiddenMenuOn.set(false);
   }
 
   showHiddenMenu(isOpen: boolean) {
+    console.log(isOpen);
     this.hiddenMenuOn.set(isOpen);
   }
 }
