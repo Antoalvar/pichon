@@ -1,11 +1,11 @@
 [
   {
     "id": "revistas_niños",
-    "img": "PICH-postsJI.png",
+    "img": "revistas_niños.jpg",
     "title": "REVISTAS PARA NIÑOS QUE NOS ENCANTAN",
     "abstract": "Os dejamos por aquí nuestras recomendaciones imprescindibles de revistas para niños que nos encantan (y una extra sobre maternidad real)",
     "categories": ["publicaciones"],
-    "prod": false
+    "prod": true
   },
   {
     "id": "entrevista_malla_raya",
