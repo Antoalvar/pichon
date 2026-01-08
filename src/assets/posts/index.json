@@ -1,5 +1,13 @@
 [
   {
+    "id": "pichon_se_va_de_paseo",
+    "img": "pichon_paseo.jpg",
+    "title": "PICHÓN SE VA DE PASEO A SITIOS INCREÍBLES",
+    "abstract": "En esta sección de Pichón se va de paseo hablamos de sitios que nos parecen increíbles para ir con niños. Museos, librerías, parques...",
+    "categories": ["viajes"],
+    "prod": true
+  },
+  {
     "id": "revistas_niños",
     "img": "revistas_niños.jpg",
     "title": "REVISTAS PARA NIÑOS QUE NOS ENCANTAN",
