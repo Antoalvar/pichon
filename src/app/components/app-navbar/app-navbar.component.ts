@@ -43,7 +43,7 @@ export class NavbarComponent {
   );
 
   navigateTHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/blog']);
     this.closeHiddenMenu();
   }
 
