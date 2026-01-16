@@ -1,5 +1,29 @@
 [
   {
+    "id": "the_campamento",
+    "img": "entradilla_campamento.jpg",
+    "title": "The Campamento: moda infantil desde Galicia",
+    "abstract": "Nacida en A Coruña y con producción en el norte de Portugal, The Campamento propone una moda infantil sostenible, colorida y libre.",
+    "categories": ["diseño"],
+    "prod": true
+  },
+  {
+    "id": "proyecto_camboya",
+    "img": "entradilla_camboya_2.jpg",
+    "title": "La imaginación de los niños se sienta a diseñar",
+    "abstract": "Un proyecto participativo en Camboya transforma los dibujos y las ideas de los niños en sillas reales, combinando diseño, educación y creatividad.",
+    "categories": ["diseño"],
+    "prod": true
+  },
+  {
+    "id": "ilustradores_españoles",
+    "img": "entradilla_bolonia.jpg",
+    "title": "ILUSTRADORES ESPAÑOLES FINALISTAS EN LA BCBF 2026",
+    "abstract": "Un reconocimiento que confirma la fuerza, diversidad y proyección internacional de la ilustración infantil hecha en España.",
+    "categories": ["publicaciones"],
+    "prod": false
+  },
+  {
     "id": "luna_luna",
     "img": "luna_luna.jpg",
     "title": "Cómo Drake rescató Luna Luna",
