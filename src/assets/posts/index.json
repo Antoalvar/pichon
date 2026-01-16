@@ -16,12 +16,12 @@
     "prod": true
   },
   {
-    "id": "ilustradores_españoles",
+    "id": "ilustradores_espanoles",
     "img": "entradilla_bolonia.jpg",
     "title": "ILUSTRADORES ESPAÑOLES FINALISTAS EN LA BCBF 2026",
     "abstract": "Un reconocimiento que confirma la fuerza, diversidad y proyección internacional de la ilustración infantil hecha en España.",
     "categories": ["publicaciones"],
-    "prod": false
+    "prod": true
   },
   {
     "id": "luna_luna",
