@@ -1,5 +1,13 @@
 [
   {
+    "id": "entrevista_leonardo",
+    "img": "entradilla_leonardo.jpg",
+    "title": "LEONARDO, 12 AÑOS Y UN UNIVERSO CREATIVO PROPIO",
+    "abstract": "Leonardo, con solo 12 años ya has expuesto en una galería y vives rodeado de lienzosllenos de color: “Cuando empiezo algo, necesito terminarlo”",
+    "categories": ["arte"],
+    "prod": true
+  },
+  {
     "id": "the_campamento",
     "img": "entradilla_campamento.jpg",
     "title": "The Campamento: moda infantil desde Galicia",

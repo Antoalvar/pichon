@@ -22,7 +22,8 @@ a {
   justify-content: space-between;
   padding: 3rem 1rem 1rem 1rem;
   align-items: center;
-  background-color: rgb(91, 195, 225);
+  //background-color: rgb(91, 195, 225);
+  background-color: rgb(231, 65, 30);
   position: sticky;
   top: 0;
 
@@ -68,7 +69,8 @@ a {
   right: 0;
   width: 100%; /* Ocupa todo el ancho en móvil, o define un ancho como 250px */
   height: calc(100vh - 80px); /* Ocupa el resto de la pantalla */
-  background-color: rgb(91, 195, 225);
+  //background-color: rgb(91, 195, 225);
+  background-color: rgb(231, 65, 30);
   z-index: 1000; /* Asegura que esté por encima del contenido */
 
   /* Estado Inicial: Fuera de la pantalla (Derecha) */
