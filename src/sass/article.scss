@@ -11,6 +11,15 @@
   gap: 1rem;
   max-width: 75%;
 
+  .diptych-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      max-width: 48%;
+    }
+  }
+
   img {
     max-width: 100%;
   }
@@ -40,5 +49,6 @@
     padding: 1em 0rem;
     max-width: 100%;
   }
+
   /* … */
 }
