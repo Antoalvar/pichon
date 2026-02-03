@@ -1,5 +1,13 @@
 [
   {
+    "id": "telefonos_y_dispositivos",
+    "img": "entradilla_telefonos.jpg",
+    "title": "Teléfonos y dispositivos sin distracciones",
+    "abstract": "No toda la tecnología infantil pasa por un smartphone: estas propuestas apuestan por un uso más consciente y calmado.",
+    "categories": ["diseño"],
+    "prod": true
+  },
+  {
     "id": "entrevista_leonardo",
     "img": "entradilla_leonardo.jpg",
     "title": "LEONARDO, 12 AÑOS Y UN UNIVERSO CREATIVO PROPIO",
