@@ -10,7 +10,7 @@ import { NavbarComponent } from './components/app-navbar/app-navbar.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  isSubscribeModalVisible: boolean = false;
+  isSubscribeModalVisible: boolean = true;
 
   hideModal() {
     this.isSubscribeModalVisible = false;
