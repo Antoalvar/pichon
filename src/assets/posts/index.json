@@ -1,5 +1,21 @@
 [
   {
+    "id": "entrevista_ana_hernandez",
+    "img": "hernández_entradilla.jpg",
+    "title": "PICHÓN entrevista a Ana Hernández Revuelta",
+    "abstract": "Entre los diez mejores profesores del mundo: la innovación desde un instituto de barrio en Madrid",
+    "categories": ["diseño"],
+    "prod": true
+  },
+  {
+    "id": "marc_morro",
+    "img": "marc_morro_entradilla.jpg",
+    "title": "Marc Morro y la silla K2: diseño para hacer en casa",
+    "abstract": "Austeridad, materiales básicos y proceso compartido: así es la propuesta de Marc Morro para llevar el diseño al ámbito doméstico.",
+    "categories": ["diseño"],
+    "prod": true
+  },
+  {
     "id": "telefonos_y_dispositivos",
     "img": "entradilla_telefonos.jpg",
     "title": "Teléfonos y dispositivos sin distracciones",
