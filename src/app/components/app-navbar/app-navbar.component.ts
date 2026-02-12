@@ -48,12 +48,12 @@ export class NavbarComponent {
   }
 
   startDownloadPdf() {
-    const url = 'https://example.com/file.pdf';
+    const url = 'https://example.com/AgendaPichón.pdf';
     this.downloadPdf.downloadFile().subscribe((blob) => {
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
       a.href = objectUrl;
-      a.download = 'file.pdf';
+      a.download = 'Agenda Pichon.pdf';
       a.click();
       URL.revokeObjectURL(objectUrl);
     });
