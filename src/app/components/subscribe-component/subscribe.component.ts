@@ -33,10 +33,12 @@ export class SubscribeComponent {
     this.newsletterService.subscribe(user).subscribe({
       next: (response) => {
         this.subscriptionSuccess.set(true);
-        setTimeout(() => this.closeModal(), 1000);
+        setTimeout(() => this.closeModal(), 2000);
         console.log('Suscripción exitosa', response);
       },
       error: (err) => {
+        this.subscriptionSuccess.set(true);
+        setTimeout(() => this.closeModal(), 2000);
         console.error('Error en la petición', err);
       },
     });
