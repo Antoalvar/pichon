@@ -2,11 +2,13 @@
 <router-outlet />
 
 <div class="footer">
+  @if (isSubscribeButtonVisible()) {
   <div class="subscribe-button-wrapper">
     <div class="subscribe-button" (click)="showModal()">
       <span>Suscríbete</span>
     </div>
   </div>
+  }
   <div class="actions-footer">
     <div class="instagram-icon" (click)="openInstagram()">
       <img src="./../assets/images/instagram.png" alt="" />

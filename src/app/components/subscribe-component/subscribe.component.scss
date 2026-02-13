@@ -28,45 +28,5 @@
       justify-content: flex-end;
       cursor: pointer;
     }
-
-    .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      padding-top: 1rem;
-
-      .form-wrapper {
-        display: flex;
-        flex-direction: column;
-        padding-top: 1rem;
-        gap: 0.6rem;
-
-        .email-label {
-          display: flex;
-        }
-
-        input {
-          height: 2rem;
-          padding: 0 0.5rem;
-          border: 1px solid #c1bbbb;
-          border-radius: 4px;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          font-family: "Alte_haas_bold";
-
-          &:focus {
-            outline: none;
-          }
-        }
-      }
-
-      .subscribe-button-wrapper {
-        padding-top: 1rem;
-
-        span {
-          cursor: pointer;
-        }
-      }
-    }
   }
 }

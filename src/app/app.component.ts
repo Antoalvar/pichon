@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, effect, inject, signal } from '@angular/core';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { SubscribeComponent } from './components/subscribe-component/subscribe.component';
 import { NavbarComponent } from './components/app-navbar/app-navbar.component';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +16,27 @@ import { NavbarComponent } from './components/app-navbar/app-navbar.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  private router = inject(Router);
+  showSubscribe = signal<boolean>(true);
+
   isSubscribeModalVisible: boolean = true;
+  isSubscribeButtonVisible = signal<boolean>(true);
+
+  constructor() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((val) => {
+        console.log(val.url.split('/'));
+        if (val.url.split('/')[1] === 'subscribe') {
+          console.log(val.url.split('/'));
+          this.isSubscribeButtonVisible.set(false);
+          this.isSubscribeModalVisible = false;
+        } else {
+          this.isSubscribeButtonVisible.set(true);
+        }
+        console.log(val);
+      });
+  }
 
   hideModal() {
     this.isSubscribeModalVisible = false;
