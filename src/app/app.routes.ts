@@ -29,7 +29,7 @@ export const routes: Routes = [
     resolve: { post: postDetailResolver },
   },
   {
-    path: 'backOffice_101',
+    path: 'BackOffice',
     loadComponent: () =>
       import('./components/back-office/back-office.component').then(
         (m) => m.BackOfficeComponent
