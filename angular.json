@@ -27,7 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/assets"],
-            "styles": ["ngx-editor/ngx-editor.min.css", "src/styles.scss"],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": false,
@@ -84,7 +84,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["ngx-editor/ngx-editor.min.css", "src/styles.scss"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
