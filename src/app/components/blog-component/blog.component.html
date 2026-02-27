@@ -6,9 +6,9 @@
     <div class="section-wrapper" (click)="selectSection(category)">
       <div
         class="description"
-        [class.selected]="category.title.toLowerCase() === selectedCategory()"
+        [class.selected]="category.name.toLowerCase() === selectedCategory()"
       >
-        <span>{{ category.title }}</span>
+        <span>{{ category.name }}</span>
       </div>
     </div>
     }
@@ -17,11 +17,11 @@
     @for (post of posts(); track $index) {
     <div class="blog-item-wrap" (click)="navigateToPost(post)">
       <div class="img-wrapper">
-        <img src="{{ `../../../assets/images/${post.img}` }}" />
+        <img src="{{ post.thumbnail_url }}" />
       </div>
       <div class="post-info">
         <div class="categories">
-          @for (category of post.categories; track $index) {
+          @for (category of post.category_name; track $index) {
           <p>{{ category.toUpperCase() }}</p>
           }
         </div>

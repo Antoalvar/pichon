@@ -1,0 +1,170 @@
+<div class="back-office-container">
+  <header class="bo-header">
+    <h1>Nuevo post</h1>
+    <div class="bo-header-actions">
+      <button
+        type="button"
+        class="btn btn--preview"
+        [disabled]="form.invalid"
+        (click)="preview()"
+      >
+        <span class="material-symbols-outlined">preview</span>
+        Vista previa
+      </button>
+      <button
+        type="button"
+        class="btn btn--publish"
+        [disabled]="form.invalid || isSubmitting()"
+        (click)="submit()"
+      >
+        <span class="material-symbols-outlined">
+          {{ isSubmitting() ? "hourglass_top" : "publish" }}
+        </span>
+        {{ isSubmitting() ? "Publicando…" : "Publicar" }}
+      </button>
+    </div>
+  </header>
+  @if (submitSuccess()) {
+  <div class="bo-banner bo-banner--success">
+    <span class="material-symbols-outlined">check_circle</span>
+    Post publicado correctamente.
+  </div>
+  } @if (submitError()) {
+  <div class="bo-banner bo-banner--error">
+    <span class="material-symbols-outlined">error</span>
+    {{ submitError() }}
+  </div>
+  }
+
+  <form [formGroup]="form" class="bo-form">
+    <!-- Basic info -->
+    <section class="bo-section">
+      <h2 class="section-title">Información básica</h2>
+
+      <div class="field">
+        <label for="title">Título</label>
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          placeholder="Título del post"
+        />
+      </div>
+
+      <div class="field">
+        <label for="abstract">Resumen</label>
+        <textarea
+          id="abstract"
+          formControlName="abstract"
+          rows="3"
+          placeholder="Breve descripción del post"
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label>Categorías</label>
+        <div class="category-chips">
+          @for (cat of availableCategories(); track cat.id) {
+          <button
+            type="button"
+            class="chip"
+            [class.chip--selected]="isCategorySelected()(cat.slug)"
+            (click)="toggleCategory(cat.slug)"
+          >
+            {{ cat.name }}
+          </button>
+          }
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="thumbnail_url">URL de la imagen (índice)</label>
+        <input
+          id="thumbnail_url"
+          type="url"
+          formControlName="thumbnail_url"
+          placeholder="https://..."
+        />
+        @if (form.get('thumbnail_url')?.value) {
+        <img
+          class="thumbnail-preview"
+          [src]="form.get('thumbnail_url')?.value"
+          alt="preview"
+        />
+        }
+      </div>
+    </section>
+
+    <!-- Content blocks -->
+    <section class="bo-section">
+      <h2 class="section-title">Contenido</h2>
+
+      <div class="blocks-list">
+        @for (block of blocks.controls; track $index) {
+        <div class="block" [formGroup]="asFormGroup(block)">
+          <div class="block-header">
+            <span class="block-type-label">{{ getTypeValue(block) }}</span>
+            <button
+              type="button"
+              class="btn btn--icon btn--danger"
+              (click)="removeBlock($index)"
+              aria-label="Eliminar bloque"
+            >
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+
+          @if (getTypeValue(block) === 'paragraph') {
+          <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu
+              [editor]="editors[$index]!"
+              [toolbar]="paragraphToolbar"
+            />
+            <ngx-editor
+              [editor]="editors[$index]!"
+              formControlName="content"
+              placeholder="Escribe el párrafo…"
+            />
+          </div>
+          } @else if (getTypeValue(block) === 'image') {
+          <input
+            type="url"
+            formControlName="content"
+            class="block-input"
+            placeholder="URL de la imagen"
+          />
+          @if (asFormGroup(block).get('content')?.value) {
+          <img
+            class="block-image-preview"
+            [src]="asFormGroup(block).get('content')?.value"
+            alt="preview"
+          />
+          } } @else {
+          <input
+            type="text"
+            formControlName="content"
+            class="block-input"
+            [placeholder]="'Escribe el ' + getTypeValue(block) + '…'"
+          />
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Add block toolbar -->
+      <div class="add-block-toolbar">
+        <span class="add-label">Añadir bloque</span>
+        @for (option of blockTypeOptions; track option.value) {
+        <button
+          type="button"
+          class="btn btn--add-block"
+          (click)="addBlock(option.value)"
+        >
+          <span class="material-symbols-outlined">{{ option.icon }}</span>
+          {{ option.label }}
+        </button>
+        }
+      </div>
+    </section>
+  </form>
+</div>

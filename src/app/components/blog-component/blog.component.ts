@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { UsePostsService } from './hooks/use-posts.service';
-import { BlogCategory, BlogIndexItem } from '../../models/blogTypes';
 import { Router } from '@angular/router';
+import { PostsFacade } from '../../facades/posts.facade';
+import { Category } from '../../models/category.model';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-blog',
@@ -10,18 +11,18 @@ import { Router } from '@angular/router';
   styleUrl: './blog.component.scss',
 })
 export class BlogComponent {
-  readonly #usePosts = inject(UsePostsService);
   readonly #router = inject(Router);
+  private readonly postsFacade = inject(PostsFacade);
 
-  posts = this.#usePosts.filteredPosts;
-  categories = this.#usePosts.categories;
-  selectedCategory = this.#usePosts.selectedCategory;
+  readonly posts = this.postsFacade.filteredPosts;
+  readonly categories = this.postsFacade.categories;
+  readonly selectedCategory = this.postsFacade.selectedCategory;
 
-  selectSection(category: BlogCategory) {
-    this.#usePosts.updateSelectedCategory(category);
+  selectSection(category: Category): void {
+    this.postsFacade.selectCategory(category);
   }
 
-  navigateToPost(post: BlogIndexItem) {
-    this.#router.navigate(['/post', post.id]);
+  navigateToPost(post: Post): void {
+    this.#router.navigate(['/post', post.id, post.slug]);
   }
 }

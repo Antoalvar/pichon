@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { filter, map, Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BlogCategory, BlogIndexItem } from '../../../models/blogTypes';
+import { Category } from '../../../models/category.model';
 
 @Injectable({
   providedIn: 'root',
@@ -71,11 +72,11 @@ export class UsePostsService {
     }
   }
 
-  updateSelectedCategory(category: BlogCategory) {
+  updateSelectedCategory(category: Category) {
     const categoryToUpdate =
-      category.title.toLocaleLowerCase() === this.selectedCategory()
+      category.name.toLocaleLowerCase() === this.selectedCategory()
         ? ''
-        : category.title.toLocaleLowerCase();
+        : category.name.toLocaleLowerCase();
 
     this._selectedCategory.set(categoryToUpdate);
     this.updateCategory(categoryToUpdate);

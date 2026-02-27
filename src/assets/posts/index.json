@@ -1,7 +1,7 @@
 [
   {
     "id": "wimmelbook",
-    "img": "entradilla_wimmelbook.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_wimmelbook.jpg",
     "title": "Aprender a mirar a través de los cuentos o wimmelbooks",
     "abstract": "Los Wimmelbooks («libros de imágenes rebosantes») son libros de gran formato y sin texto que surgieron en Alemania a mediados del siglo XX",
     "categories": ["publicaciones"],
@@ -9,23 +9,15 @@
   },
   {
     "id": "elogio_lentitud",
-    "img": "entradilla_elogio_lentitud.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_elogio_lentitud.jpg",
     "title": "Elogio de la lentitud: El asombro como territorio y la belleza como lenguaje",
     "abstract": "Artículo de la Dra. Nathalie Rodríguez Rojas (Doctora en Psicología y fundadora de Kamchatka Magic Toys)",
     "categories": ["juegos"],
     "prod": true
   },
   {
-    "id": "entrevista_ana_hernandez",
-    "img": "hernández_entradilla.jpg",
-    "title": "PICHÓN entrevista a Ana Hernández Revuelta",
-    "abstract": "Entre los diez mejores profesores del mundo: la innovación desde un instituto de barrio en Madrid",
-    "categories": ["arte"],
-    "prod": false
-  },
-  {
     "id": "marc_morro",
-    "img": "marc_morro_entradilla.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/marc_morro_entradilla.jpg",
     "title": "Marc Morro y la silla K2: diseño para hacer en casa",
     "abstract": "Austeridad, materiales básicos y proceso compartido: así es la propuesta de Marc Morro para llevar el diseño al ámbito doméstico.",
     "categories": ["diseño"],
@@ -33,7 +25,7 @@
   },
   {
     "id": "telefonos_y_dispositivos",
-    "img": "entradilla_telefonos.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_telefonos.jpg",
     "title": "Teléfonos y dispositivos sin distracciones",
     "abstract": "No toda la tecnología infantil pasa por un smartphone: estas propuestas apuestan por un uso más consciente y calmado.",
     "categories": ["diseño"],
@@ -41,7 +33,7 @@
   },
   {
     "id": "entrevista_leonardo",
-    "img": "entradilla_leonardo.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_leonardo.jpg",
     "title": "LEONARDO, 12 AÑOS Y UN UNIVERSO CREATIVO PROPIO",
     "abstract": "Con solo 12 años, Leonardo Rodríguez Pastrana ya ha expuesto su obra en Asia, Europa y Estados Unidos; y vive rodeado de lienzos llenos de color.",
     "categories": ["arte"],
@@ -49,7 +41,7 @@
   },
   {
     "id": "the_campamento",
-    "img": "entradilla_campamento.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_campamento.jpg",
     "title": "The Campamento: moda infantil desde Galicia",
     "abstract": "Nacida en A Coruña y con producción en el norte de Portugal, The Campamento propone una moda infantil sostenible, colorida y libre.",
     "categories": ["diseño"],
@@ -57,7 +49,7 @@
   },
   {
     "id": "proyecto_camboya",
-    "img": "entradilla_camboya_2.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_camboya_2.jpg",
     "title": "La imaginación de los niños se sienta a diseñar",
     "abstract": "Un proyecto participativo en Camboya transforma los dibujos y las ideas de los niños en sillas reales, combinando diseño, educación y creatividad.",
     "categories": ["diseño"],
@@ -65,7 +57,7 @@
   },
   {
     "id": "ilustradores_espanoles",
-    "img": "entradilla_bolonia.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_bolonia.jpg",
     "title": "ILUSTRADORES ESPAÑOLES FINALISTAS EN LA BCBF 2026",
     "abstract": "Un reconocimiento que confirma la fuerza, diversidad y proyección internacional de la ilustración infantil hecha en España.",
     "categories": ["publicaciones"],
@@ -73,7 +65,7 @@
   },
   {
     "id": "luna_luna",
-    "img": "luna_luna.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/luna_luna.jpg",
     "title": "Cómo Drake rescató Luna Luna",
     "abstract": "Una feria artística olvidada durante décadas renace gracias a Drake, recuperando un proyecto revolucionario que unió arte, juego y cultura popular.",
     "categories": ["arte"],
@@ -81,7 +73,7 @@
   },
   {
     "id": "pichon_se_va_de_paseo",
-    "img": "pichon_paseo.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/pichon_paseo.jpg",
     "title": "PICHÓN SE VA DE PASEO A SITIOS INCREÍBLES",
     "abstract": "En esta sección de Pichón se va de paseo hablamos de sitios que nos parecen increíbles para ir con niños. Museos, librerías, parques...",
     "categories": ["viajes"],
@@ -89,7 +81,7 @@
   },
   {
     "id": "revistas_niños",
-    "img": "revistas_niños.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/revistas_ni%C3%B1os.jpg",
     "title": "REVISTAS PARA NIÑOS QUE NOS ENCANTAN",
     "abstract": "Os dejamos por aquí nuestras recomendaciones imprescindibles de revistas para niños que nos encantan (y una extra sobre maternidad real)",
     "categories": ["publicaciones"],
@@ -97,7 +89,7 @@
   },
   {
     "id": "entrevista_malla_raya",
-    "img": "entradilla_malla_raya.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/entradilla_malla_raya.jpg",
     "title": "ENTREVISTA A PAULA SÁNCHEZ DE MALLA RAYA",
     "abstract": "Entrevistamos a Paula Sánchez, creadora de Malla Raya, una marca de ropa de calidad y precio medio para niños que no perpetúa estereotipos.",
     "categories": ["diseño"],
@@ -105,7 +97,7 @@
   },
   {
     "id": "entrevista_circulari",
-    "img": "Circulari35.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/Circulari35.webp",
     "title": "CIRCULARI, MUEBLES PARA HOGARES CON NIÑOS",
     "abstract": "Entrevistamos a Circulari, nueva marca española de muebles basada en un modelo de desarrollo sostenible y circular.",
     "categories": ["diseño"],
@@ -113,7 +105,7 @@
   },
   {
     "id": "san_sebastian",
-    "img": "san_sebastian.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/san_sebastian.jpg",
     "title": "San Sebastián y San Juan de Luz con niños",
     "abstract": "Os dejamos por aquí nuestras recomendaciones imprescindibles con niños: Tabakalera, Wow Park, San Juan de Luz y el Museo Chillida.",
     "categories": ["viajes"],
@@ -121,7 +113,7 @@
   },
   {
     "id": "kapla",
-    "img": "grapat.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/grapat.jpg",
     "title": "Piezas sueltas: KAPLA, GRAPAT y GRIMMS",
     "abstract": "Hay una buena frase de Tonucci que nos encanta: 'Un buen jueguete es aquel que, sin ser nada en concreto, puede ser todo'.",
     "categories": ["juegos"],
@@ -129,7 +121,7 @@
   },
   {
     "id": "mejores_festivales_teatro",
-    "img": "circo.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/circo.jpg",
     "title": "MEJORES FESTIVALES PARA IR CON NIÑOS EN ESPAÑA",
     "abstract": "Aquí va un pequeño intento de selección de festivales potentes para familias en España. Muchas veces no nos entermaos de todo lo que hay.",
     "categories": ["planes"],
@@ -137,7 +129,7 @@
   },
   {
     "id": "arte_de_los_cuentos",
-    "img": "japon.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/japon.jpg",
     "title": "EL ARTE DE LOS CUENTOS SIN PALABRAS",
     "abstract": "Los cuentos sin palabras son álbumes ilustrados que permiten a los niños pequeños seguir la historia sin la necesidad de un adulto.",
     "categories": ["publicaciones"],
@@ -145,7 +137,7 @@
   },
   {
     "id": "carruseles",
-    "img": "petit_pierre_2.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/petit_pierre_2.jpg",
     "title": "LOS CARRUSELES DE PETIT PIERRE Y LA FABOULASERIE",
     "abstract": "La obra de Petit Pierre recuerda a La Catedral de San Justo, de Mejorada del Campo (Madrid). Una catedral hecha a base de basura...",
     "categories": ["arte"],
@@ -153,7 +145,7 @@
   },
   {
     "id": "floris_hovers",
-    "img": "cars.jpg",
+    "img": "https://ik.imagekit.io/i6kjq7mb2/Entradillas/cars.jpg",
     "title": "LOS ICÓNICOS COCHES DE FLORIS HOVERS",
     "abstract": "Floris Hovers (1976) es un diseñador y artesano holandés. que descubrimos en el maravilloso libro de 'Design for Children', de Phaidon",
     "categories": ["arte"],

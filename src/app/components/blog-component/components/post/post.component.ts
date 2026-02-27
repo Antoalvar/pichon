@@ -1,7 +1,8 @@
-import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { UsePostsService } from '../../hooks/use-posts.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+import { PostDetail } from '../../../../models/post.model';
 
 @Component({
   selector: 'app-post',
@@ -11,21 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './post.component.scss',
 })
 export class PostComponent {
-  readonly #activatedRoute = inject(ActivatedRoute);
-  readonly #usePost = inject(UsePostsService);
-
-  private readonly _post = signal<HTMLElement | null>(null);
-  readonly post = this._post.asReadonly();
-
-  constructor() {
-    this.#getPost();
-  }
-
-  #getPost() {
-    const postId = this.#activatedRoute.snapshot.paramMap.get('id');
-    this.#usePost
-      .getPostsById(postId as string)
-      .pipe(takeUntilDestroyed())
-      .subscribe((post) => this._post.set(post.text));
-  }
+  readonly post = toSignal(
+    inject(ActivatedRoute).data.pipe(map((data) => data['post'] as PostDetail))
+  );
 }

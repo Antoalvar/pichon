@@ -1,13 +1,9 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterOutlet,
-} from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { SubscribeComponent } from './components/subscribe-component/subscribe.component';
 import { NavbarComponent } from './components/app-navbar/app-navbar.component';
-import { filter } from 'rxjs';
+import { PostsFacade } from './facades/posts.facade';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +13,7 @@ import { filter } from 'rxjs';
 })
 export class AppComponent {
   private router = inject(Router);
+  private readonly _postsFacade = inject(PostsFacade);
   showSubscribe = signal<boolean>(true);
 
   isSubscribeModalVisible: boolean = true;
@@ -26,15 +23,13 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((val) => {
-        console.log(val.url.split('/'));
-        if (val.url.split('/')[1] === 'subscribe') {
-          console.log(val.url.split('/'));
-          this.isSubscribeButtonVisible.set(false);
+        const segment = val.url.split('/')[1];
+        const hideSubscribe =
+          segment === 'subscribe' || segment === 'backOffice_101';
+        this.isSubscribeButtonVisible.set(!hideSubscribe);
+        if (hideSubscribe) {
           this.isSubscribeModalVisible = false;
-        } else {
-          this.isSubscribeButtonVisible.set(true);
         }
-        console.log(val);
       });
   }
 
