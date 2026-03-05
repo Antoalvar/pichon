@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: pichon-front
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist/pichon-front/browser
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
