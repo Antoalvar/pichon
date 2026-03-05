@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "postbuild": "node -e \"const fs=require('fs'); let h=fs.readFileSync('dist/pichon-front/browser/index.csr.html','utf8'); h=h.replace(/ ngcm=\\\"\\\"/, ''); fs.writeFileSync('dist/pichon-front/browser/index.html', h); console.log('CSR index.html created');\"",
+    "postbuild": "echo Build complete",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:pichon-front": "node dist/pichon-front/server/server.mjs"
