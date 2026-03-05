@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
+    "postbuild": "node -e \"const fs=require('fs'); fs.copyFileSync('dist/pichon-front/browser/index.csr.html','dist/pichon-front/browser/index.html');\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:pichon-front": "node dist/pichon-front/server/server.mjs"
