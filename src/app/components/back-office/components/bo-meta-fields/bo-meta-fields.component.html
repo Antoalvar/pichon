@@ -1,0 +1,53 @@
+<div class="field">
+  <label for="title">Título</label>
+  <input
+    id="title"
+    type="text"
+    formControlName="title"
+    placeholder="Título del post"
+  />
+</div>
+
+<div class="field">
+  <label for="abstract">Resumen</label>
+  <textarea
+    id="abstract"
+    formControlName="abstract"
+    rows="3"
+    placeholder="Breve descripción del post"
+  ></textarea>
+</div>
+
+<div class="field">
+  <label>Categorías</label>
+  <div class="category-chips">
+    @for (cat of availableCategories(); track cat.id) {
+      <button
+        type="button"
+        class="chip"
+        [class.chip--selected]="isSelected(cat.slug)"
+        [attr.aria-pressed]="isSelected(cat.slug)"
+        (click)="categoryToggle.emit(cat.slug)"
+      >
+        {{ cat.name }}
+      </button>
+    }
+  </div>
+</div>
+
+<div class="field">
+  <label for="thumbnail_url">URL de la imagen (índice)</label>
+  <input
+    id="thumbnail_url"
+    type="url"
+    formControlName="thumbnail_url"
+    placeholder="https://..."
+  />
+  @if (thumbnailUrl()) {
+    <img
+      class="thumbnail-preview"
+      [src]="thumbnailUrl()"
+      alt="preview"
+    />
+  }
+</div>

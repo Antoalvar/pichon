@@ -1,0 +1,45 @@
+<div class="block" [formGroup]="blockGroup()">
+  <div class="block-header">
+    <span class="block-type-label">{{ blockType() }}</span>
+    <button
+      type="button"
+      class="btn btn--icon btn--danger"
+      (click)="remove.emit()"
+      [attr.aria-label]="'Eliminar bloque: ' + blockType()"
+    >
+      <span class="material-symbols-outlined">delete</span>
+    </button>
+  </div>
+
+  @if (blockType() === 'paragraph') {
+    <div class="NgxEditor__Wrapper" role="group" aria-label="Editor de párrafo">
+      <ngx-editor-menu [editor]="editor()!" [toolbar]="paragraphToolbar()" />
+      <ngx-editor
+        [editor]="editor()!"
+        formControlName="content"
+        placeholder="Escribe el párrafo…"
+      />
+    </div>
+  } @else if (blockType() === 'image') {
+    <input
+      type="url"
+      formControlName="content"
+      class="block-input"
+      placeholder="URL de la imagen"
+    />
+    @if (blockContentValue()) {
+      <img
+        class="block-image-preview"
+        [src]="blockContentValue()"
+        alt="preview"
+      />
+    }
+  } @else {
+    <input
+      type="text"
+      formControlName="content"
+      class="block-input"
+      [placeholder]="'Escribe el ' + blockType() + '…'"
+    />
+  }
+</div>

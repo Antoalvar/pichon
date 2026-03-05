@@ -1,0 +1,25 @@
+<div class="blocks-list">
+  @for (block of blockGroups(); track getBlockId(block)) {
+    <app-bo-block-item
+      [blockGroup]="block"
+      [blockType]="getBlockType(block)"
+      [editor]="getEditorForBlock(block)"
+      [paragraphToolbar]="paragraphToolbar()"
+      (remove)="removeBlock.emit(getBlockId(block))"
+    />
+  }
+</div>
+
+<div class="add-block-toolbar">
+  <span class="add-label">Añadir bloque</span>
+  @for (option of blockTypeOptions(); track option.value) {
+    <button
+      type="button"
+      class="btn btn--add-block"
+      (click)="addBlock.emit(option.value)"
+    >
+      <span class="material-symbols-outlined">{{ option.icon }}</span>
+      {{ option.label }}
+    </button>
+  }
+</div>
