@@ -343,4 +343,166 @@
   &--danger:hover {
     background: rgba(200, 30, 30, 0.4);
   }
+
+  &--primary {
+    background: #fff;
+    color: rgb(231, 65, 30);
+    border-color: #fff;
+
+    &:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  &--secondary {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  &--danger {
+    background: rgba(200, 30, 30, 0.3);
+    border-color: rgba(200, 30, 30, 0.7);
+
+    &:hover:not(:disabled) {
+      background: rgba(200, 30, 30, 0.5);
+    }
+  }
+}
+
+// ─── Mode selector tabs ────────────────────────────────────────────────────────
+.bo-mode-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0;
+}
+
+.bo-mode-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Alte_haas_bold", sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -2px;
+
+  .material-symbols-outlined {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+
+  &--active {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+}
+
+// ─── Post selector ─────────────────────────────────────────────────────────────
+.bo-post-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bo-post-selector__label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+}
+
+.bo-post-selector__row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bo-post-selector__select {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-family: "Alte_haas_regular", sans-serif;
+  font-size: 1rem;
+
+  option {
+    background: #2a2a2a;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #fff;
+  }
+}
+
+// ─── Delete panel ──────────────────────────────────────────────────────────────
+.bo-delete-panel {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.bo-delete-panel__title {
+  font-family: "Alte_haas_bold", sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 1.25rem;
+}
+
+// ─── Confirmation dialog ───────────────────────────────────────────────────────
+.bo-dialog {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 480px;
+  width: 90%;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+  }
+}
+
+.bo-dialog__title {
+  font-family: "Alte_haas_bold", sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+
+.bo-dialog__desc {
+  font-family: "Alte_haas_regular", sans-serif;
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem;
+  opacity: 0.9;
+}
+
+.bo-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+// ─── Spinner animation ─────────────────────────────────────────────────────────
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
 }

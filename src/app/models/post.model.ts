@@ -30,3 +30,17 @@ export interface CreatePostRequest {
   readonly prod: boolean;
   readonly content: string;
 }
+
+/**
+ * Request body for PATCH /posts/:id.
+ * All fields are optional; only include fields that change.
+ */
+export interface UpdatePostRequest {
+  readonly title?: string;
+  readonly abstract?: string;
+  readonly img?: string;
+  readonly categories?: readonly string[];
+  readonly prod?: boolean;
+  readonly content?: string;
+}
+

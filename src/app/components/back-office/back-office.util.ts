@@ -1,5 +1,5 @@
-import { CreatePostRequest } from '../../models/post.model';
-import { ContentBlockFormValue, PostFormValue } from './back-office.model';
+import { CreatePostRequest, UpdatePostRequest } from '../../models/post.model';
+import { ContentBlockType, ContentBlockFormValue, ParsedBlock, PostFormValue } from './back-office.model';
 
 /**
  * Strips inline `color` and `background-color` styles from an HTML string
@@ -32,6 +32,24 @@ export function buildBlockContent(
     .join('');
 }
 
+/** Shared body builder used by both create and update payloads. */
+function buildPostBody(
+  formValue: PostFormValue,
+  selectedCategories: readonly string[]
+): { title: string; abstract: string; img: string; categories: string[]; content: string } {
+  const { title, abstract, thumbnail_url, blocks } = formValue;
+  const titleDiv = `<div class='title'>${title.toUpperCase()}</div>`;
+  const abstractDiv = `<div class='abstract'>${abstract}</div>`;
+  const imgHeader = `<img src='${thumbnail_url}' alt='' />`;
+  return {
+    title,
+    abstract,
+    img: thumbnail_url,
+    categories: [...selectedCategories],
+    content: titleDiv + abstractDiv + imgHeader + buildBlockContent(blocks),
+  };
+}
+
 /**
  * Assembles a {@link CreatePostRequest} from the current form value
  * and the selected category slugs.
@@ -40,19 +58,74 @@ export function buildPayload(
   formValue: PostFormValue,
   selectedCategories: readonly string[]
 ): CreatePostRequest {
-  const { title, abstract, thumbnail_url, blocks } = formValue;
-  const titleDiv = `<div class='title'>${title.toUpperCase()}</div>`;
-  const abstractDiv = `<div class='abstract'>${abstract}</div>`;
-  const imgHeader = `<img src='${thumbnail_url}' alt='' />`;
-  const content = titleDiv + abstractDiv + imgHeader + buildBlockContent(blocks);
-  return {
-    title,
-    abstract,
-    img: thumbnail_url,
-    categories: [...selectedCategories],
-    prod: true,
-    content,
-  };
+  return { ...buildPostBody(formValue, selectedCategories), prod: true };
+}
+
+/**
+ * Assembles an {@link UpdatePostRequest} (PATCH body) from the current form
+ * value and the selected category slugs.
+ *
+ * When `includeContent` is false (default), the `content` field is omitted so
+ * the backend keeps the existing post body unchanged.
+ */
+export function buildUpdatePayload(
+  formValue: PostFormValue,
+  selectedCategories: readonly string[],
+  includeContent = false
+): UpdatePostRequest {
+  const body = buildPostBody(formValue, selectedCategories);
+  if (!includeContent) {
+    return { title: body.title, abstract: body.abstract, img: body.img, categories: body.categories, prod: true };
+  }
+  return { ...body, prod: true };
+}
+
+/**
+ * Parses stored post HTML content back into an array of {@link ParsedBlock}
+ * objects — the inverse of `buildBlockContent`.
+ *
+ * The stored format is:
+ * ```
+ * <div class='title'>…</div>
+ * <div class='abstract'>…</div>
+ * <img src='thumbnail_url' alt='' />
+ * [zero or more block elements]
+ * ```
+ */
+export function htmlToBlocks(content: string): ParsedBlock[] {
+  if (!content) return [];
+
+  const doc = new DOMParser().parseFromString(content, 'text/html');
+  const children = Array.from(doc.body.children);
+  const blocks: ParsedBlock[] = [];
+  let headerImgConsumed = false;
+
+  for (const el of children) {
+    const cls = el.className;
+
+    // Skip title and abstract divs (reserved meta classes)
+    if (cls === 'title' || cls === 'abstract') continue;
+
+    if (el.tagName === 'IMG') {
+      if (!headerImgConsumed) {
+        // First <img> is the header thumbnail — skip it
+        headerImgConsumed = true;
+        continue;
+      }
+      // Subsequent <img> elements are image blocks
+      blocks.push({ type: 'image', content: el.getAttribute('src') ?? '' });
+      continue;
+    }
+
+    if (cls === 'paragraph') {
+      blocks.push({ type: 'paragraph', content: el.innerHTML });
+    } else if (cls === 'subtitle' || cls === 'caption') {
+      blocks.push({ type: cls as ContentBlockType, content: el.textContent ?? '' });
+    }
+    // Unknown classes are ignored defensively
+  }
+
+  return blocks;
 }
 
 /**
@@ -89,3 +162,4 @@ export function buildPreviewHtml(formValue: PostFormValue): string {
 </body>
 </html>`;
 }
+

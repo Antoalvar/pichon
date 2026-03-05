@@ -1,34 +1,118 @@
 <div class="back-office-container">
-  <app-bo-action-bar
-    [isSubmitting]="facade.isSubmitting()"
-    [isFormValid]="facade.isFormValid()"
-    [submitSuccess]="facade.submitSuccess()"
-    [submitError]="facade.submitError()"
-    (previewClick)="facade.preview()"
-    (publishClick)="facade.submit()"
+  <!-- Mode selector tabs -->
+  <app-bo-mode-selector
+    [activeMode]="facade.mode()"
+    [options]="facade.modeOptions"
+    (modeChange)="facade.setMode($event)"
   />
 
-  <form [formGroup]="facade.form" class="bo-form">
-    <section class="bo-section">
-      <h2 class="section-title">Información básica</h2>
-      <app-bo-meta-fields
-        [availableCategories]="facade.availableCategories()"
-        [selectedCategories]="facade.selectedCategories()"
-        [thumbnailUrl]="facade.thumbnailUrl()"
-        (categoryToggle)="facade.toggleCategory($event)"
-      />
-    </section>
+  @switch (facade.mode()) {
 
-    <section class="bo-section">
-      <h2 class="section-title">Contenido</h2>
-      <app-bo-block-list
-        [blockGroups]="facade.blockGroups()"
-        [editorMap]="facade.editorMap()"
-        [blockTypeOptions]="facade.blockTypeOptions"
-        [paragraphToolbar]="facade.paragraphToolbar"
-        (addBlock)="facade.addBlock($event)"
-        (removeBlock)="facade.removeBlock($event)"
+    @case ('create') {
+      <app-bo-action-bar
+        [mode]="facade.mode()"
+        [isSubmitting]="facade.isSubmitting()"
+        [isFormValid]="facade.isFormValid()"
+        [submitSuccess]="facade.submitSuccess()"
+        [submitError]="facade.submitError()"
+        (previewClick)="facade.preview()"
+        (publishClick)="facade.submitCreate()"
       />
-    </section>
-  </form>
+
+      <form [formGroup]="facade.form" class="bo-form">
+        <section class="bo-section">
+          <h2 class="section-title">Información básica</h2>
+          <app-bo-meta-fields
+            [availableCategories]="facade.availableCategories()"
+            [selectedCategories]="facade.selectedCategories()"
+            [thumbnailUrl]="facade.thumbnailUrl()"
+            (categoryToggle)="facade.toggleCategory($event)"
+          />
+        </section>
+
+        <section class="bo-section">
+          <h2 class="section-title">Contenido</h2>
+          <app-bo-block-list
+            [blockGroups]="facade.blockGroups()"
+            [editorMap]="facade.editorMap()"
+            [blockTypeOptions]="facade.blockTypeOptions"
+            [paragraphToolbar]="facade.paragraphToolbar"
+            (addBlock)="facade.addBlock($event)"
+            (removeBlock)="facade.removeBlock($event)"
+          />
+        </section>
+      </form>
+    }
+
+    @case ('edit') {
+      <!-- Step 1: select & load the post -->
+      @if (!facade.postDetailLoaded()) {
+        <div class="bo-section">
+          <app-bo-post-selector
+            [posts]="facade.posts()"
+        [selectedPostId]="facade.selectedPostId() ?? null"
+            [isLoading]="facade.postDetailLoading()"
+            actionLabel="Cargar post"
+            (postSelect)="facade.selectPost($event)"
+            (actionClick)="facade.loadPostForEdit()"
+          />
+          @if (facade.postDetailError()) {
+            <div class="bo-banner bo-banner--error" role="alert">
+              Error al cargar el post. Intenta de nuevo.
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Step 2: edit form once loaded -->
+      @if (facade.postDetailLoaded()) {
+        <app-bo-action-bar
+          [mode]="facade.mode()"
+          [isSubmitting]="facade.isSubmitting()"
+          [isFormValid]="facade.isFormValid()"
+          [submitSuccess]="facade.submitSuccess()"
+          [submitError]="facade.submitError()"
+          (previewClick)="facade.preview()"
+          (publishClick)="facade.submitEdit()"
+        />
+
+        <form [formGroup]="facade.form" class="bo-form">
+          <section class="bo-section">
+            <h2 class="section-title">Información básica</h2>
+            <app-bo-meta-fields
+              [availableCategories]="facade.availableCategories()"
+              [selectedCategories]="facade.selectedCategories()"
+              [thumbnailUrl]="facade.thumbnailUrl()"
+              (categoryToggle)="facade.toggleCategory($event)"
+            />
+          </section>
+
+          <section class="bo-section">
+            <h2 class="section-title">Contenido</h2>
+            <app-bo-block-list
+              [blockGroups]="facade.blockGroups()"
+              [editorMap]="facade.editorMap()"
+              [blockTypeOptions]="facade.blockTypeOptions"
+              [paragraphToolbar]="facade.paragraphToolbar"
+              (addBlock)="facade.addBlock($event)"
+              (removeBlock)="facade.removeBlock($event)"
+            />
+          </section>
+        </form>
+      }
+    }
+
+    @case ('delete') {
+      <app-bo-delete-panel
+        [posts]="facade.posts()"
+        [selectedPostId]="facade.selectedPostId() ?? null"
+        [selectedPostTitle]="facade.selectedPost()?.title ?? null"
+        [isDeleting]="facade.isDeleting()"
+        [deleteSuccess]="facade.deleteSuccess()"
+        [deleteError]="facade.deleteError()"
+        (postSelect)="facade.selectPost($event)"
+        (deleteConfirmed)="facade.submitDelete()"
+      />
+    }
+  }
 </div>

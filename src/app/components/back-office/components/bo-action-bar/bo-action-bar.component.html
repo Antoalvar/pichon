@@ -1,5 +1,5 @@
 <header class="bo-header">
-  <h1>Nuevo post</h1>
+  <h1>{{ pageTitle() }}</h1>
 
   <div class="bo-header-actions">
     <button
@@ -20,9 +20,9 @@
       (click)="publishClick.emit()"
     >
       <span class="material-symbols-outlined">
-        {{ isSubmitting() ? 'hourglass_top' : 'publish' }}
+        {{ isSubmitting() ? 'hourglass_top' : (mode() === 'edit' ? 'save' : 'publish') }}
       </span>
-      {{ isSubmitting() ? 'Publicando…' : 'Publicar' }}
+      {{ submitLabel() }}
     </button>
   </div>
 </header>
@@ -30,7 +30,7 @@
 @if (submitSuccess()) {
   <div class="bo-banner bo-banner--success" role="status" aria-live="polite">
     <span class="material-symbols-outlined">check_circle</span>
-    Post publicado correctamente.
+    {{ successMessage() }}
   </div>
 }
 

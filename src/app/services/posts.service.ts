@@ -8,6 +8,7 @@ import {
   PostDetailResponse,
   PostsResponse,
   CreatePostRequest,
+  UpdatePostRequest,
 } from '../models/post.model';
 import { environment } from '../../environments/environment';
 
@@ -32,4 +33,17 @@ export class PostsService {
       .post<PostDetailResponse>(`${environment.apiUrl}/posts`, post)
       .pipe(map((response) => response.data));
   }
+
+  updatePost(id: string, body: UpdatePostRequest): Observable<PostDetail> {
+    return this.http
+      .patch<PostDetailResponse>(`${environment.apiUrl}/posts/${id}`, body)
+      .pipe(map((response) => response.data));
+  }
+
+  deletePost(id: string): Observable<void> {
+    return this.http
+      .delete(`${environment.apiUrl}/posts/${id}`)
+      .pipe(map(() => void 0));
+  }
 }
+

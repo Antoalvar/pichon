@@ -56,6 +56,15 @@ export class PostsFacade {
   readonly categoriesError = this.categoriesResource.error;
 
   /**
+   * Triggers a fresh reload of the posts list.
+   * Call after any write operation (create, update, delete) to keep the
+   * global post list in sync.
+   */
+  reloadPosts(): void {
+    this.postsResource.reload();
+  }
+
+  /**
    * Toggles the active category filter.
    * Selecting the already-active category clears the filter.
    */
