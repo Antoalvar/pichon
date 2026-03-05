@@ -167,6 +167,40 @@ describe('GuideDownloadModalComponent', () => {
       tick(2000);
     }));
 
+    it('should display error message when sendInfoEmail fails', fakeAsync(() => {
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
+      spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(throwError(() => ({ status: 400 })));
+
+      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.onSubmit();
+      fixture.detectChanges();
+
+      const errorMsg = fixture.nativeElement.querySelector('.error-message') as HTMLElement | null;
+
+      expect(errorMsg).not.toBeNull();
+      expect(errorMsg?.textContent).toContain('No pudimos enviarte la guía');
+
+      tick(0);
+    }));
+
+    it('should reset error state when retry button is clicked', fakeAsync(() => {
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
+      spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(throwError(() => ({ status: 400 })));
+
+      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.onSubmit();
+      fixture.detectChanges();
+
+      const retryBtn = fixture.nativeElement.querySelector('.retry-button') as HTMLButtonElement;
+      retryBtn.click();
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.error-message')).toBeNull();
+      expect(fixture.nativeElement.querySelector('#modal-name')).not.toBeNull();
+
+      tick(0);
+    }));
+
     it('should emit close 2000ms after successful submission', fakeAsync(() => {
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));

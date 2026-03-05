@@ -35,6 +35,7 @@ export class GuideDownloadModalComponent {
 
   readonly isLoading = signal<boolean>(false);
   readonly downloadSuccess = signal<boolean>(false);
+  readonly downloadError = signal<boolean>(false);
 
   readonly form = new FormGroup({
     name: new FormControl('', { validators: [Validators.required], nonNullable: true }),
@@ -62,19 +63,24 @@ export class GuideDownloadModalComponent {
     };
 
     // The Mailchimp journey requires the email to exist in the audience first.
-    // We always subscribe (errors like 409 "already subscribed" are silently ignored),
-    // then trigger the journey.
+    // Subscribe errors (e.g. already subscribed, 409) are silently ignored.
+    // If the journey trigger itself fails, show an error to the user.
     this.newsletterService
       .subscribe({ email, fname: name })
       .pipe(
         catchError(() => of(null)),
-        switchMap(() => this.newsletterService.sendInfoEmail(infoPayload)),
-        catchError(() => of(null))
+        switchMap(() => this.newsletterService.sendInfoEmail(infoPayload))
       )
-      .subscribe(() => {
-        this.isLoading.set(false);
-        this.downloadSuccess.set(true);
-        setTimeout(() => this.close.emit(), 2000);
+      .subscribe({
+        next: () => {
+          this.isLoading.set(false);
+          this.downloadSuccess.set(true);
+          setTimeout(() => this.close.emit(), 2000);
+        },
+        error: () => {
+          this.isLoading.set(false);
+          this.downloadError.set(true);
+        },
       });
   }
 

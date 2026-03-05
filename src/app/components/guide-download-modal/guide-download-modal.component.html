@@ -7,7 +7,7 @@
         </span>
       </div>
 
-      @if (!downloadSuccess()) {
+      @if (!downloadSuccess() && !downloadError()) {
         <div class="modal-body">
           <h2>Descarga tu guía</h2>
 
@@ -58,9 +58,14 @@
             </div>
           </form>
         </div>
-      } @else {
+      } @else if (downloadSuccess()) {
         <div class="success-message">
           <p>¡Tu guía está en camino! Revisa tu email.</p>
+        </div>
+      } @else {
+        <div class="error-message">
+          <p>No pudimos enviarte la guía. Por favor, inténtalo de nuevo o contáctanos.</p>
+          <button type="button" class="retry-button" (click)="downloadError.set(false)">Intentar de nuevo</button>
         </div>
       }
     </div>
