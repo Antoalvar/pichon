@@ -1,25 +1,23 @@
-<div class="header">
+<header class="header">
   <div class="logotype-container">
     <div class="pichon-logotype" (click)="navigateTHome()"></div>
   </div>
   @if (!isHandset()) {
-  <div class="actions-board">
+  <nav class="actions-board" aria-label="Navegación principal">
     <ng-container [ngTemplateOutlet]="menuItems" />
-  </div>
+  </nav>
   } @else {
   <app-menu-button
     (isButtonOpen)="showHiddenMenu($event)"
     [changedFromOutside]="hiddenMenuOn()"
   ></app-menu-button>
   }
-</div>
+</header>
 @if (isHandset()) {
-<div class="hidden-navbar" [class.is-open]="hiddenMenuOn()">
+<nav class="hidden-navbar" aria-label="Navegación principal" [class.is-open]="hiddenMenuOn()">
   <ng-container [ngTemplateOutlet]="menuItems" />
-</div>
-}
-
-<ng-template #menuItems>
+</nav>
+}<ng-template #menuItems>
   <a (click)="startDownloadPdf()">Agenda</a>
   <a (click)="closeHiddenMenu()" routerLink="/guias">Guías</a>
   <a (click)="closeHiddenMenu()" routerLink="/blog">Blog</a>

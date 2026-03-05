@@ -50,15 +50,15 @@ export class BackOfficeWidgetFacade {
   private readonly _deleteSuccess = signal(false);
 
   // ── rxResource for loading a single post detail (edit mode) ───────────────
-  private readonly _postDetailResource = rxResource({
-    request: () => this._editLoadTrigger(),
-    loader: ({ request: id }) => this.postsService.getPostById(id as string),
+  private readonly _postDetailResource = rxResource<PostDetail, string | undefined>({
+    params: () => this._editLoadTrigger(),
+    stream: ({ params: id }) => this.postsService.getPostById(id as string),
   });
 
   // ── Effect: pre-fill form when post detail loads ───────────────────────────
   private readonly _prefillEffect = effect(() => {
     const detail = this._postDetailResource.value();
-    if (detail !== undefined) {
+    if (detail != null) {
       // Run in untracked so none of the signal writes below create a
       // reactive dependency that re-triggers this effect.
       untracked(() => this._prefillFormWithPost(detail));

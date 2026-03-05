@@ -1,9 +1,11 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { SubscribeComponent } from './components/subscribe-component/subscribe.component';
 import { NavbarComponent } from './components/app-navbar/app-navbar.component';
 import { PostsFacade } from './facades/posts.facade';
+import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +16,34 @@ import { PostsFacade } from './facades/posts.facade';
 export class AppComponent {
   private router = inject(Router);
   private readonly _postsFacade = inject(PostsFacade);
+  private readonly seoService = inject(SeoService);
+  private readonly platformId = inject(PLATFORM_ID);
+
   showSubscribe = signal<boolean>(true);
 
   isSubscribeModalVisible: boolean = true;
   isSubscribeButtonVisible = signal<boolean>(true);
 
   constructor() {
+    this.seoService.setJsonLd({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          name: 'Pichón',
+          url: 'https://revistapichon.es',
+          logo: 'https://revistapichon.es/assets/images/og-default.jpg',
+          sameAs: ['https://www.instagram.com/pichonrevista'],
+        },
+        {
+          '@type': 'WebSite',
+          name: 'Pichón',
+          url: 'https://revistapichon.es',
+          description: 'Guía cultural pensada para familias.',
+        },
+      ],
+    });
+
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((val) => {
@@ -42,6 +66,9 @@ export class AppComponent {
   }
 
   openInstagram() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     window.open(
       'https://www.instagram.com/pichonrevista?igsh=MTJlNWY5ejU4ajg1Mg%3D%3D&utm_source=qr',
       '_blank'

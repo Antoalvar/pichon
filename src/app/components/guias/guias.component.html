@@ -1,9 +1,10 @@
-<div class="guias-container">
+<main class="guias-container">
+  <h1 class="visually-hidden">Guías — Pichón</h1>
   <div class="guides-wrapper">
     @for (guide of guides(); track $index) {
-      <div class="guide-item-wrap">
+      <article class="guide-item-wrap">
         <div class="img-wrapper">
-          <img [src]="guide.image" [alt]="guide.title" />
+          <img [src]="guide.image" [alt]="guide.title" loading="lazy" />
           <div class="img-overlay">
             <button type="button" (click)="openModal(guide)">Descárgala ahora</button>
           </div>
@@ -16,12 +17,10 @@
             <p>{{ guide.description }}</p>
           </div>
         </div>
-      </div>
+      </article>
     }
   </div>
-</div>
-
-@if (selectedGuide(); as guide) {
+</main>@if (selectedGuide(); as guide) {
   <app-guide-download-modal
     [journeyId]="guide.journeyId"
     [stepId]="guide.stepId"

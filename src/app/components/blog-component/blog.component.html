@@ -1,4 +1,5 @@
-<div class="blog-container">
+<main class="blog-container">
+  <h1 class="visually-hidden">Blog — Pichón</h1>
   <div class="index-wrapper">
     @for (category of categories(); track $index) { @if ($index !== 0) {
     <b> • </b>
@@ -15,9 +16,9 @@
   </div>
   <div class="posts-wrapper">
     @for (post of posts(); track $index) {
-    <div class="blog-item-wrap" (click)="navigateToPost(post)">
+    <article class="blog-item-wrap" (click)="navigateToPost(post)">
       <div class="img-wrapper">
-        <img src="{{ post.thumbnail_url }}" />
+        <img [src]="post.thumbnail_url" [alt]="post.title" loading="lazy" />
       </div>
       <div class="post-info">
         <div class="categories">
@@ -32,7 +33,7 @@
           <p>{{ post.abstract }}</p>
         </div>
       </div>
-    </div>
+    </article>
     }
   </div>
-</div>
+</main>

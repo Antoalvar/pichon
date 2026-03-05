@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <router-outlet />
 
-<div class="footer">
+<footer class="footer">
   @if (isSubscribeButtonVisible()) {
   <div class="subscribe-button-wrapper">
     <div class="subscribe-button" (click)="showModal()">
@@ -12,10 +12,10 @@
   }
   <div class="actions-footer">
     <div class="instagram-icon" (click)="openInstagram()">
-      <img src="./../assets/images/instagram.png" alt="" />
+      <img src="./../assets/images/instagram.png" alt="Pichón en Instagram" loading="lazy" />
     </div>
   </div>
-</div>
+</footer>
 @if (isSubscribeModalVisible) {
 <app-subscribe (close)="hideModal()"></app-subscribe>
 }

@@ -10,12 +10,12 @@ export class PostsFacade {
   private readonly postsService = inject(PostsService);
   private readonly categoriesService = inject(CategoriesService);
 
-  private readonly postsResource = rxResource({
-    loader: () => this.postsService.getPosts(),
+  private readonly postsResource = rxResource<Post[], undefined>({
+    stream: () => this.postsService.getPosts(),
   });
 
-  private readonly categoriesResource = rxResource({
-    loader: () => this.categoriesService.getCategories(),
+  private readonly categoriesResource = rxResource<Category[], undefined>({
+    stream: () => this.categoriesService.getCategories(),
   });
 
   /** Resolved posts list, empty array while loading. */

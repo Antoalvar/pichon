@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,6 +31,7 @@ import { NgTemplateOutlet } from '@angular/common';
 export class NavbarComponent {
   private readonly router = inject(Router);
   private readonly downloadPdf = inject(DownloadPdf);
+  private readonly platformId = inject(PLATFORM_ID);
 
   private breakpointObserver = inject(BreakpointObserver);
 
@@ -48,6 +50,9 @@ export class NavbarComponent {
   }
 
   startDownloadPdf() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     const url = 'https://example.com/AgendaPichón.pdf';
     this.downloadPdf.downloadFile().subscribe((blob) => {
       const a = document.createElement('a');

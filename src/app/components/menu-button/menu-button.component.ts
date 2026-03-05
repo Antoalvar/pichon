@@ -1,5 +1,4 @@
 import { Component, effect, input, output, signal } from '@angular/core';
-import { NgClass } from '../../../../node_modules/@angular/common/common_module.d-NEF7UaHr';
 
 @Component({
   selector: 'app-menu-button',
