@@ -7,20 +7,34 @@ export interface NewsletterPayload {
   fname: string;
 }
 
+export interface InfoEmailPayload {
+  email: string;
+  fname: string;
+  journey_id: number;
+  step_id: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class NewsletterService {
-  private readonly API_URL =
-    'https://pichon-back.onrender.com/subscribe_newsletter';
+  private readonly BASE_URL = 'https://pichon-back.onrender.com';
 
   #http = inject(HttpClient);
 
-  subscribe(data: NewsletterPayload): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+  private readonly headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
 
-    return this.#http.post(this.API_URL, data, { headers });
+  subscribe(data: NewsletterPayload): Observable<unknown> {
+    return this.#http.post(`${this.BASE_URL}/subscribe_newsletter`, data, {
+      headers: this.headers,
+    });
+  }
+
+  sendInfoEmail(data: InfoEmailPayload): Observable<unknown> {
+    return this.#http.post(`${this.BASE_URL}/send_info_email`, data, {
+      headers: this.headers,
+    });
   }
 }

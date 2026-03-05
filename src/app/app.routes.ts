@@ -4,6 +4,7 @@ import { PostComponent } from './components/blog-component/components/post/post.
 import { AboutComponent } from './components/about/about.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
 import { postDetailResolver } from './services/post-detail.resolver';
+import { GuiasComponent } from './components/guias/guias.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,10 @@ export const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'guias',
+    component: GuiasComponent,
   },
   {
     path: 'post/:id/:slug',
