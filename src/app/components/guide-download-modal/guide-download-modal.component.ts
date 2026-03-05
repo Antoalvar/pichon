@@ -3,7 +3,6 @@ import {
   Component,
   inject,
   input,
-  OnInit,
   output,
   signal,
 } from '@angular/core';
@@ -17,8 +16,8 @@ import {
   InfoEmailPayload,
   NewsletterService,
 } from '../../services/newsletterService';
-import { forkJoin, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-guide-download-modal',
@@ -52,7 +51,7 @@ export class GuideDownloadModalComponent {
       return;
     }
 
-    const { name, email, subscribe } = this.form.getRawValue();
+    const { name, email } = this.form.getRawValue();
     this.isLoading.set(true);
 
     const infoPayload: InfoEmailPayload = {
@@ -62,22 +61,25 @@ export class GuideDownloadModalComponent {
       step_id: this.stepId(),
     };
 
-    const infoEmail$ = this.newsletterService.sendInfoEmail(infoPayload).pipe(
-      catchError(() => of(null))
-    );
-
-    const subscribe$ = subscribe
-      ? this.newsletterService.subscribe({ email, fname: name }).pipe(catchError(() => of(null)))
-      : of(null);
-
-    forkJoin([infoEmail$, subscribe$]).subscribe(() => {
-      this.isLoading.set(false);
-      this.downloadSuccess.set(true);
-      setTimeout(() => this.close.emit(), 2000);
-    });
+    // The Mailchimp journey requires the email to exist in the audience first.
+    // We always subscribe (errors like 409 "already subscribed" are silently ignored),
+    // then trigger the journey.
+    this.newsletterService
+      .subscribe({ email, fname: name })
+      .pipe(
+        catchError(() => of(null)),
+        switchMap(() => this.newsletterService.sendInfoEmail(infoPayload)),
+        catchError(() => of(null))
+      )
+      .subscribe(() => {
+        this.isLoading.set(false);
+        this.downloadSuccess.set(true);
+        setTimeout(() => this.close.emit(), 2000);
+      });
   }
 
   closeModal(): void {
     this.close.emit();
   }
 }
+

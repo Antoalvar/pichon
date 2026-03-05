@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { GuideDownloadModalComponent } from './guide-download-modal.component';
 import { NewsletterService } from '../../services/newsletterService';
 import { NewsletterServiceMock } from '../../services/newsletterService.mock';
@@ -101,7 +101,27 @@ describe('GuideDownloadModalComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
+    it('should always call subscribe before sendInfoEmail when form is valid', fakeAsync(() => {
+      const callOrder: string[] = [];
+      spyOn(newsletterServiceMock, 'subscribe').and.callFake(() => {
+        callOrder.push('subscribe');
+        return of<unknown>({});
+      });
+      spyOn(newsletterServiceMock, 'sendInfoEmail').and.callFake(() => {
+        callOrder.push('sendInfoEmail');
+        return of<unknown>({});
+      });
+
+      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.onSubmit();
+
+      expect(callOrder).toEqual(['subscribe', 'sendInfoEmail']);
+
+      tick(2000);
+    }));
+
     it('should call sendInfoEmail with correct payload when form is valid', fakeAsync(() => {
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       const spy = spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
       component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
@@ -117,31 +137,22 @@ describe('GuideDownloadModalComponent', () => {
       tick(2000);
     }));
 
-    it('should not call subscribe when checkbox is unchecked', fakeAsync(() => {
-      spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
-      const subscribeSpy = spyOn(newsletterServiceMock, 'subscribe');
+    it('should still call sendInfoEmail even when subscribe returns an error (e.g. 409)', fakeAsync(() => {
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(
+        throwError(() => ({ status: 409 }))
+      );
+      const spy = spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
       component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
       component.onSubmit();
 
-      expect(subscribeSpy).not.toHaveBeenCalled();
-
-      tick(2000);
-    }));
-
-    it('should call subscribe when checkbox is checked and form is valid', fakeAsync(() => {
-      spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
-      const subscribeSpy = spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
-
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: true });
-      component.onSubmit();
-
-      expect(subscribeSpy).toHaveBeenCalledOnceWith({ email: 'test@test.com', fname: 'Test' });
+      expect(spy).toHaveBeenCalled();
 
       tick(2000);
     }));
 
     it('should display success message after sendInfoEmail completes', fakeAsync(() => {
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
       component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
@@ -157,6 +168,7 @@ describe('GuideDownloadModalComponent', () => {
     }));
 
     it('should emit close 2000ms after successful submission', fakeAsync(() => {
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
       let emitCount = 0;
