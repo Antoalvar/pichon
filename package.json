@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
+    "generate-sitemap": "node scripts/generate-sitemap.mjs",
     "postbuild": "echo Build complete",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

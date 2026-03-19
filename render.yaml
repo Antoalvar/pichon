@@ -2,7 +2,7 @@ services:
   - type: web
     name: pichon-front
     env: static
-    buildCommand: npm run build
+    buildCommand: npm run generate-sitemap && npm run build
     staticPublishPath: ./dist/pichon-front/browser
     routes:
       - type: rewrite

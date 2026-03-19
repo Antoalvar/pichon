@@ -40,6 +40,13 @@ export class PostComponent {
         description: post.abstract,
         image: post.thumbnail_url,
         url: `https://revistapichon.es/post/${post.id}/${post.slug}`,
+        datePublished: post.published_at,
+        dateModified: post.published_at,
+        author: {
+          '@type': 'Organization',
+          name: 'Pichón',
+          url: 'https://revistapichon.es',
+        },
         publisher: {
           '@type': 'Organization',
           name: 'Pichón',

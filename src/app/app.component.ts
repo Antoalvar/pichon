@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, PLATFORM_ID, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
@@ -6,6 +6,8 @@ import { SubscribeComponent } from './components/subscribe-component/subscribe.c
 import { NavbarComponent } from './components/app-navbar/app-navbar.component';
 import { PostsFacade } from './facades/posts.facade';
 import { SeoService } from './services/seo.service';
+
+declare function gtag(...args: unknown[]): void;
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,7 @@ export class AppComponent {
   private readonly _postsFacade = inject(PostsFacade);
   private readonly seoService = inject(SeoService);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly document = inject(DOCUMENT);
 
   showSubscribe = signal<boolean>(true);
 
@@ -53,6 +56,13 @@ export class AppComponent {
         this.isSubscribeButtonVisible.set(!hideSubscribe);
         if (hideSubscribe) {
           this.isSubscribeModalVisible = false;
+        }
+
+        if (isPlatformBrowser(this.platformId)) {
+          gtag('event', 'page_view', {
+            page_path: val.urlAfterRedirects,
+            page_title: this.document.title,
+          });
         }
       });
   }
