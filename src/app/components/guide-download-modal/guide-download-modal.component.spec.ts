@@ -21,26 +21,34 @@ describe('GuideDownloadModalComponent', () => {
     newsletterServiceMock = TestBed.inject(NewsletterServiceMock);
 
     fixture = TestBed.createComponent(GuideDownloadModalComponent);
-    fixture.componentRef.setInput('journeyId', 38);
-    fixture.componentRef.setInput('stepId', 147);
+    fixture.componentRef.setInput('title', 'Test Title');
+    fixture.componentRef.setInput('subtitle', 'Test subtitle');
     fixture.detectChanges();
 
     component = fixture.componentInstance;
   });
 
   describe('initialization', () => {
-    it('should create successfully with required inputs journeyId=38 and stepId=147', () => {
+    it('should create successfully with required inputs title and subtitle', () => {
       expect(component).toBeTruthy();
     });
   });
 
   describe('template rendering', () => {
-    it('should render name input, email input, subscribe checkbox, and submit button', () => {
+    it('should render the title and subtitle from inputs', () => {
+      const h2 = fixture.nativeElement.querySelector('h2') as HTMLElement;
+      const subtitle = fixture.nativeElement.querySelector('.modal-subtitle') as HTMLElement;
+
+      expect(h2.textContent?.trim()).toBe('Test Title');
+      expect(subtitle.textContent?.trim()).toBe('Test subtitle');
+    });
+
+    it('should render name input, email input, and submit button', () => {
       const nativeEl: HTMLElement = fixture.nativeElement;
 
       expect(nativeEl.querySelector('#modal-name')).not.toBeNull();
       expect(nativeEl.querySelector('#modal-email')).not.toBeNull();
-      expect(nativeEl.querySelector('input[type="checkbox"]')).not.toBeNull();
+      expect(nativeEl.querySelector('input[type="checkbox"]')).toBeNull();
       expect(nativeEl.querySelector('button[type="submit"]')).not.toBeNull();
     });
 
@@ -49,17 +57,11 @@ describe('GuideDownloadModalComponent', () => {
 
       expect(submitBtn.textContent?.trim()).toBe('Descárgala ya');
     });
-
-    it('should have the subscribe checkbox checked by default', () => {
-      const checkbox = fixture.nativeElement.querySelector('input[type="checkbox"]') as HTMLInputElement;
-
-      expect(checkbox.checked).toBeTrue();
-    });
   });
 
   describe('form validation', () => {
     it('should show name required error when name is empty and form is submitted', () => {
-      component.form.setValue({ name: '', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: '', email: 'test@test.com' });
       component.onSubmit();
       fixture.detectChanges();
 
@@ -70,7 +72,7 @@ describe('GuideDownloadModalComponent', () => {
     });
 
     it('should show email required error when email is empty and form is submitted', () => {
-      component.form.setValue({ name: 'Test', email: '', subscribe: false });
+      component.form.setValue({ name: 'Test', email: '' });
       component.onSubmit();
       fixture.detectChanges();
 
@@ -81,7 +83,7 @@ describe('GuideDownloadModalComponent', () => {
     });
 
     it('should show email format error when email is "notanemail" and form is submitted', () => {
-      component.form.setValue({ name: 'Test', email: 'notanemail', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'notanemail' });
       component.onSubmit();
       fixture.detectChanges();
 
@@ -102,6 +104,9 @@ describe('GuideDownloadModalComponent', () => {
     });
 
     it('should always call subscribe before sendInfoEmail when form is valid', fakeAsync(() => {
+      fixture.componentRef.setInput('journeyId', 38);
+      fixture.componentRef.setInput('stepId', 147);
+
       const callOrder: string[] = [];
       spyOn(newsletterServiceMock, 'subscribe').and.callFake(() => {
         callOrder.push('subscribe');
@@ -112,7 +117,7 @@ describe('GuideDownloadModalComponent', () => {
         return of<unknown>({});
       });
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
 
       expect(callOrder).toEqual(['subscribe', 'sendInfoEmail']);
@@ -121,10 +126,13 @@ describe('GuideDownloadModalComponent', () => {
     }));
 
     it('should call sendInfoEmail with correct payload when form is valid', fakeAsync(() => {
+      fixture.componentRef.setInput('journeyId', 38);
+      fixture.componentRef.setInput('stepId', 147);
+
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       const spy = spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
 
       expect(spy).toHaveBeenCalledOnceWith({
@@ -138,12 +146,15 @@ describe('GuideDownloadModalComponent', () => {
     }));
 
     it('should still call sendInfoEmail even when subscribe returns an error (e.g. 409)', fakeAsync(() => {
+      fixture.componentRef.setInput('journeyId', 38);
+      fixture.componentRef.setInput('stepId', 147);
+
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(
         throwError(() => ({ status: 409 }))
       );
       const spy = spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
 
       expect(spy).toHaveBeenCalled();
@@ -152,10 +163,13 @@ describe('GuideDownloadModalComponent', () => {
     }));
 
     it('should display success message after sendInfoEmail completes', fakeAsync(() => {
+      fixture.componentRef.setInput('journeyId', 38);
+      fixture.componentRef.setInput('stepId', 147);
+
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
       fixture.detectChanges();
 
@@ -171,7 +185,7 @@ describe('GuideDownloadModalComponent', () => {
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(throwError(() => ({ status: 400 })));
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
       fixture.detectChanges();
 
@@ -187,7 +201,7 @@ describe('GuideDownloadModalComponent', () => {
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(throwError(() => ({ status: 400 })));
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
       fixture.detectChanges();
 
@@ -202,13 +216,16 @@ describe('GuideDownloadModalComponent', () => {
     }));
 
     it('should emit close 2000ms after successful submission', fakeAsync(() => {
+      fixture.componentRef.setInput('journeyId', 38);
+      fixture.componentRef.setInput('stepId', 147);
+
       spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
       spyOn(newsletterServiceMock, 'sendInfoEmail').and.returnValue(of<unknown>({}));
 
       let emitCount = 0;
       component.close.subscribe(() => { emitCount++; });
 
-      component.form.setValue({ name: 'Test', email: 'test@test.com', subscribe: false });
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
       component.onSubmit();
 
       expect(emitCount).toBe(0);
@@ -216,6 +233,19 @@ describe('GuideDownloadModalComponent', () => {
       tick(2000);
 
       expect(emitCount).toBe(1);
+    }));
+    it('should open successUrl in a new tab when no journeyId/stepId are set', fakeAsync(() => {
+      fixture.componentRef.setInput('successUrl', '/assets/agenda/agenda.pdf');
+      spyOn(newsletterServiceMock, 'subscribe').and.returnValue(of<unknown>({}));
+      const openSpy = spyOn(window, 'open');
+
+      component.form.setValue({ name: 'Test', email: 'test@test.com' });
+      component.onSubmit();
+      fixture.detectChanges();
+
+      expect(openSpy).toHaveBeenCalledOnceWith('/assets/agenda/agenda.pdf', '_blank');
+
+      tick(2000);
     }));
   });
 

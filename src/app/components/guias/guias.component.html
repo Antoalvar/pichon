@@ -22,6 +22,8 @@
   </div>
 </main>@if (selectedGuide(); as guide) {
   <app-guide-download-modal
+    title="Descarga tu guía"
+    subtitle="Introduce tu dirección de correo electrónico y recibe tu guía en pocos minutos"
     [journeyId]="guide.journeyId"
     [stepId]="guide.stepId"
     (close)="closeModal()"

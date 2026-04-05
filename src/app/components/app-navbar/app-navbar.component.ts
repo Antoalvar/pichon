@@ -1,5 +1,4 @@
-import { Component, PLATFORM_ID, inject, signal } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, inject, output, signal } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,7 +7,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { map } from 'rxjs/operators';
 import { Router, RouterLink } from '@angular/router';
-import { DownloadPdf } from '../../services/downloadPdf.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MenuButtonComponent } from '../menu-button/menu-button.component';
 import { NgTemplateOutlet } from '@angular/common';
@@ -30,47 +28,33 @@ import { NgTemplateOutlet } from '@angular/common';
 })
 export class NavbarComponent {
   private readonly router = inject(Router);
-  private readonly downloadPdf = inject(DownloadPdf);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private breakpointObserver = inject(BreakpointObserver);
+  private readonly breakpointObserver = inject(BreakpointObserver);
 
   readonly hiddenMenuOn = signal<boolean>(false);
+  readonly agendaOpen = output<void>();
 
-  isHandset = toSignal(
+  readonly isHandset = toSignal(
     this.breakpointObserver
       .observe(Breakpoints.Handset)
       .pipe(map((result) => result.matches)),
     { initialValue: false }
   );
 
-  navigateTHome() {
+  navigateTHome(): void {
     this.router.navigate(['/blog']);
     this.closeHiddenMenu();
   }
 
-  startDownloadPdf() {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-    const url = 'https://example.com/AgendaPichón.pdf';
-    this.downloadPdf.downloadFile().subscribe((blob) => {
-      const a = document.createElement('a');
-      const objectUrl = URL.createObjectURL(blob);
-      a.href = objectUrl;
-      a.download = 'Agenda Pichon.pdf';
-      a.click();
-      URL.revokeObjectURL(objectUrl);
-    });
+  openAgendaModal(): void {
+    this.agendaOpen.emit();
     this.closeHiddenMenu();
   }
 
-  closeHiddenMenu() {
+  closeHiddenMenu(): void {
     this.hiddenMenuOn.set(false);
   }
 
-  showHiddenMenu(isOpen: boolean) {
-    console.log(isOpen);
+  showHiddenMenu(isOpen: boolean): void {
     this.hiddenMenuOn.set(isOpen);
   }
 }

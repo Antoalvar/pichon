@@ -18,7 +18,7 @@
   <ng-container [ngTemplateOutlet]="menuItems" />
 </nav>
 }<ng-template #menuItems>
-  <a (click)="startDownloadPdf()">Agenda</a>
+  <a (click)="openAgendaModal()">Agenda</a>
   <a (click)="closeHiddenMenu()" routerLink="/guias">Guías</a>
   <a (click)="closeHiddenMenu()" routerLink="/blog">Blog</a>
   <a (click)="closeHiddenMenu()" routerLink="/about">About</a>

@@ -1,4 +1,5 @@
-<app-navbar></app-navbar>
+<div class="safe-area-fill"></div>
+<app-navbar (agendaOpen)="showAgendaModal.set(true)"></app-navbar>
 <router-outlet />
 
 <footer class="footer">
@@ -17,4 +18,12 @@
 </footer>
 @if (isSubscribeModalVisible) {
 <app-subscribe (close)="hideModal()"></app-subscribe>
+}
+@if (showAgendaModal()) {
+  <app-guide-download-modal
+    title="Descarga tu agenda"
+    subtitle="Suscríbete a nuestra newsletter y descárgate grátis la agenda de este mes"
+    successUrl="/assets/agenda/agenda.pdf"
+    (close)="showAgendaModal.set(false)"
+  ></app-guide-download-modal>
 }

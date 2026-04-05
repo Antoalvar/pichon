@@ -5,7 +5,9 @@ import {
   input,
   output,
   signal,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import {
   FormControl,
   FormGroup,
@@ -28,9 +30,13 @@ import { catchError, of } from 'rxjs';
 })
 export class GuideDownloadModalComponent {
   private readonly newsletterService = inject(NewsletterService);
+  private readonly platformId = inject(PLATFORM_ID);
 
-  readonly journeyId = input.required<number>();
-  readonly stepId = input.required<number>();
+  readonly title = input.required<string>();
+  readonly subtitle = input.required<string>();
+  readonly journeyId = input<number | undefined>(undefined);
+  readonly stepId = input<number | undefined>(undefined);
+  readonly successUrl = input<string | undefined>(undefined);
   readonly close = output<void>();
 
   readonly isLoading = signal<boolean>(false);
@@ -43,7 +49,6 @@ export class GuideDownloadModalComponent {
       validators: [Validators.required, Validators.email],
       nonNullable: true,
     }),
-    subscribe: new FormControl(true, { nonNullable: true }),
   });
 
   onSubmit(): void {
@@ -55,33 +60,46 @@ export class GuideDownloadModalComponent {
     const { name, email } = this.form.getRawValue();
     this.isLoading.set(true);
 
-    const infoPayload: InfoEmailPayload = {
-      email,
-      fname: name,
-      journey_id: this.journeyId(),
-      step_id: this.stepId(),
-    };
+    const jId = this.journeyId();
+    const sId = this.stepId();
 
-    // The Mailchimp journey requires the email to exist in the audience first.
-    // Subscribe errors (e.g. already subscribed, 409) are silently ignored.
-    // If the journey trigger itself fails, show an error to the user.
-    this.newsletterService
+    // Always subscribe first; silently ignore errors (e.g. 409 already subscribed).
+    const subscribe$ = this.newsletterService
       .subscribe({ email, fname: name })
-      .pipe(
-        catchError(() => of(null)),
-        switchMap(() => this.newsletterService.sendInfoEmail(infoPayload))
-      )
-      .subscribe({
-        next: () => {
-          this.isLoading.set(false);
-          this.downloadSuccess.set(true);
-          setTimeout(() => this.close.emit(), 2000);
-        },
-        error: () => {
-          this.isLoading.set(false);
-          this.downloadError.set(true);
-        },
-      });
+      .pipe(catchError(() => of(null)));
+
+    // If journeyId + stepId are provided, trigger the Mailchimp journey to deliver
+    // the guide by email. Otherwise (agenda case) just subscribing is enough.
+    const action$ =
+      jId != null && sId != null
+        ? subscribe$.pipe(
+            switchMap(() => {
+              const infoPayload: InfoEmailPayload = {
+                email,
+                fname: name,
+                journey_id: jId,
+                step_id: sId,
+              };
+              return this.newsletterService.sendInfoEmail(infoPayload);
+            })
+          )
+        : subscribe$;
+
+    action$.subscribe({
+      next: () => {
+        const url = this.successUrl();
+        if (url && isPlatformBrowser(this.platformId)) {
+          window.open(url, '_blank');
+        }
+        this.isLoading.set(false);
+        this.downloadSuccess.set(true);
+        setTimeout(() => this.close.emit(), 2000);
+      },
+      error: () => {
+        this.isLoading.set(false);
+        this.downloadError.set(true);
+      },
+    });
   }
 
   closeModal(): void {

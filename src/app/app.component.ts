@@ -4,6 +4,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { SubscribeComponent } from './components/subscribe-component/subscribe.component';
 import { NavbarComponent } from './components/app-navbar/app-navbar.component';
+import { GuideDownloadModalComponent } from './components/guide-download-modal/guide-download-modal.component';
 import { PostsFacade } from './facades/posts.facade';
 import { SeoService } from './services/seo.service';
 
@@ -11,7 +12,7 @@ declare function gtag(...args: unknown[]): void;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SubscribeComponent, NavbarComponent],
+  imports: [RouterOutlet, SubscribeComponent, NavbarComponent, GuideDownloadModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -22,7 +23,7 @@ export class AppComponent {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
 
-  showSubscribe = signal<boolean>(true);
+  readonly showAgendaModal = signal<boolean>(false);
 
   isSubscribeModalVisible: boolean = true;
   isSubscribeButtonVisible = signal<boolean>(true);

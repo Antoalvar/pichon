@@ -9,7 +9,8 @@
 
       @if (!downloadSuccess() && !downloadError()) {
         <div class="modal-body">
-          <h2>Descarga tu guía</h2>
+          <h2>{{ title() }}</h2>
+          <p class="modal-subtitle">{{ subtitle() }}</p>
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
             <div class="form-field">
@@ -40,15 +41,6 @@
                   <span class="field-error">El formato del email no es válido</span>
                 }
               }
-            </div>
-
-            <div class="checkbox-field">
-              <label class="checkbox-label">
-                <input type="checkbox" formControlName="subscribe" />
-                <span>
-                  Suscríbete a nuestra newsletter si aún no lo has hecho y recibe todas las novedades
-                </span>
-              </label>
             </div>
 
             <div class="submit-wrapper">
