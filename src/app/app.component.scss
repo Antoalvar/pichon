@@ -6,16 +6,8 @@ $header-logotype-height: 2.3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.safe-area-fill {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: env(safe-area-inset-top, 0px);
-  background-color: rgb(231, 65, 30);
-  z-index: 2;
+  // Push content below the fixed navbar (height varies by breakpoint via --navbar-height)
+  padding-top: var(--navbar-height);
 }
 
 .footer {

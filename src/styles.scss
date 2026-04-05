@@ -45,6 +45,18 @@ html {
   -ms-overflow-style: scrollbar;
 }
 
+// Navbar height as CSS variable so content can offset itself.
+// Calculation: safe-area-inset + header-padding-top + logo-area(3.3rem) + header-padding-bottom
+:root {
+  --navbar-height: calc(env(safe-area-inset-top, 0px) + 7.3rem); // > 959px
+}
+
+@media (max-width: 959px) {
+  :root {
+    --navbar-height: calc(env(safe-area-inset-top, 0px) + 6.3rem); // ≤ 959px
+  }
+}
+
 html,
 body {
   width: 100%;
@@ -66,13 +78,13 @@ body {
 }
 
 body {
-  padding: env(safe-area-inset-top, 0px) 2rem 2rem 2rem;
+  padding: 0 2rem 2rem 2rem;
 }
 
 @media (max-width: 450px) {
   html,
   body {
-    padding: env(safe-area-inset-top, 0px) 1rem 1rem 1rem;
+    padding: 0 1rem 1rem 1rem;
   }
   /* … */
 }

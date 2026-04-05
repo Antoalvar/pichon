@@ -1,10 +1,14 @@
 $header-logotype-height: 2.3rem;
 
+// Fixed positioning is the only reliable approach for iOS Safari.
+// position: sticky has well-known bugs inside flex containers on iOS.
 :host {
-  max-width: 1200px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
+  background-color: rgb(231, 65, 30);
 }
 
 a {
@@ -21,13 +25,13 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
+  // Centers the nav content within the full-width fixed bar
+  max-width: 1200px;
+  margin: 0 auto;
   padding: calc(env(safe-area-inset-top, 0px) + 3rem) 1rem 1rem 1rem;
   align-items: center;
   //background-color: rgb(91, 195, 225);
   background-color: rgb(231, 65, 30);
-  position: sticky;
-  top: 0;
-  z-index: 100;
 
   .actions-board {
     padding: 0.5rem 0;
@@ -60,17 +64,18 @@ a {
 
 @media (max-width: 450px) {
   .header {
-    padding: calc(env(safe-area-inset-top, 0px) + 2rem) 0 0 0;
+    // Add side padding: body padding no longer applies to a fixed element
+    padding: calc(env(safe-area-inset-top, 0px) + 2rem) 1rem 1rem 1rem;
   }
   /* … */
 }
 
 .hidden-navbar {
   position: fixed;
-  top: 85px; /* Ajusta este valor a la altura exacta de tu .header */
-  right: 0;
-  width: 100%; /* Ocupa todo el ancho en móvil, o define un ancho como 250px */
-  height: calc(100vh - 80px); /* Ocupa el resto de la pantalla */
+  top: var(--navbar-height);
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - var(--navbar-height));
   //background-color: rgb(91, 195, 225);
   background-color: rgb(231, 65, 30);
   z-index: 1000; /* Asegura que esté por encima del contenido */
