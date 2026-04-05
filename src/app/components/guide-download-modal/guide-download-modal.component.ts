@@ -62,6 +62,14 @@ export class GuideDownloadModalComponent {
 
     const jId = this.journeyId();
     const sId = this.stepId();
+    const url = this.successUrl();
+
+    // Open the window synchronously during the user gesture so mobile browsers
+    // do not block it as a pop-up. The URL will be set once the request succeeds.
+    const newWindow =
+      url && isPlatformBrowser(this.platformId)
+        ? window.open('', '_blank')
+        : null;
 
     // Always subscribe first; silently ignore errors (e.g. 409 already subscribed).
     const subscribe$ = this.newsletterService
@@ -87,15 +95,15 @@ export class GuideDownloadModalComponent {
 
     action$.subscribe({
       next: () => {
-        const url = this.successUrl();
-        if (url && isPlatformBrowser(this.platformId)) {
-          window.open(url, '_blank');
+        if (newWindow && url) {
+          newWindow.location.href = url;
         }
         this.isLoading.set(false);
         this.downloadSuccess.set(true);
         setTimeout(() => this.close.emit(), 2000);
       },
       error: () => {
+        newWindow?.close();
         this.isLoading.set(false);
         this.downloadError.set(true);
       },
