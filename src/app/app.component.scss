@@ -8,16 +8,6 @@ $header-logotype-height: 2.3rem;
   justify-content: space-between;
 }
 
-.safe-area-fill {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: env(safe-area-inset-top, 0px);
-  background-color: rgb(231, 65, 30);
-  z-index: 2;
-}
-
 .footer {
   display: flex;
   flex-direction: column;
