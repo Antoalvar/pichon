@@ -7,7 +7,7 @@
         </span>
       </div>
 
-      @if (!downloadSuccess() && !downloadError()) {
+      @if (!downloadError()) {
         <div class="modal-body">
           <h2>{{ title() }}</h2>
           <p class="modal-subtitle">{{ subtitle() }}</p>
@@ -49,10 +49,6 @@
               </button>
             </div>
           </form>
-        </div>
-      } @else if (downloadSuccess()) {
-        <div class="success-message">
-          <p>¡Tu guía está en camino! Revisa tu email.</p>
         </div>
       } @else {
         <div class="error-message">

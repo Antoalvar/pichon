@@ -40,7 +40,6 @@ export class GuideDownloadModalComponent {
   readonly close = output<void>();
 
   readonly isLoading = signal<boolean>(false);
-  readonly downloadSuccess = signal<boolean>(false);
   readonly downloadError = signal<boolean>(false);
 
   readonly form = new FormGroup({
@@ -99,8 +98,7 @@ export class GuideDownloadModalComponent {
           newWindow.location.href = url;
         }
         this.isLoading.set(false);
-        this.downloadSuccess.set(true);
-        setTimeout(() => this.close.emit(), 2000);
+        this.close.emit();
       },
       error: () => {
         newWindow?.close();
