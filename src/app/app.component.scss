@@ -32,6 +32,13 @@ $header-logotype-height: 2.3rem;
     }
   }
 
+  .actions-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
   .instagram-icon {
     height: 30px;
     display: flex;
@@ -40,6 +47,17 @@ $header-logotype-height: 2.3rem;
 
     img {
       height: 100%;
+    }
+  }
+
+  .privacy-link {
+    font-size: 0.75rem;
+    color: #666;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: #333;
     }
   }
 

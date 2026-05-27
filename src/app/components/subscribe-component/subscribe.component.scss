@@ -32,20 +32,20 @@
       cursor: pointer;
     }
 
+    h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .promo-subtitle {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
     .promo-text {
       text-align: left;
-      margin-bottom: 0.3rem;
-
-      h2 {
-        text-align: center;
-        margin-bottom: 0.5rem;
-        font-size: 1.4rem;
-      }
-
-      .promo-subtitle {
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
+      margin-top: 1rem;
 
       ul {
         padding-left: 1.2rem;

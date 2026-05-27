@@ -32,6 +32,14 @@ export class NewsletterService {
     });
   }
 
+  unsubscribe(email: string): Observable<unknown> {
+    return this.#http.post(
+      `${this.BASE_URL}/unsubscribe_newsletter`,
+      { email },
+      { headers: this.headers }
+    );
+  }
+
   sendInfoEmail(data: InfoEmailPayload): Observable<unknown> {
     return this.#http.post(`${this.BASE_URL}/send_info_email`, data, {
       headers: this.headers,

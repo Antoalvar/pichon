@@ -1,5 +1,6 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import {
   NewsletterPayload,
   NewsletterService,
@@ -7,7 +8,7 @@ import {
 
 @Component({
   selector: 'app-subscription-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './subscription-form.component.html',
   styleUrl: './subscription-form.component.scss',
 })
@@ -21,8 +22,13 @@ export class SubscriptionFormComponent {
 
   subscriptionEmail = new FormControl('');
   subscriptionName = new FormControl('');
+  privacyAccepted = new FormControl(false);
 
   sendSubscriptionEmail() {
+    if (!this.privacyAccepted.value) {
+      return;
+    }
+
     const user: NewsletterPayload = {
       email: this.subscriptionEmail.value ?? '',
       fname: this.subscriptionName.value ?? '',

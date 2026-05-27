@@ -13,6 +13,8 @@
     <div class="instagram-icon" (click)="openInstagram()">
       <img src="./../assets/images/instagram.png" alt="Pichón en Instagram" loading="lazy" />
     </div>
+    <a class="privacy-link" routerLink="/politica-de-privacidad">Política de Privacidad</a>
+    <a class="privacy-link" routerLink="/politica-de-cookies">Política de Cookies</a>
   </div>
 </footer>
 @if (isSubscribeModalVisible) {
@@ -26,3 +28,4 @@
     (close)="showAgendaModal.set(false)"
   ></app-guide-download-modal>
 }
+<app-cookie-banner />

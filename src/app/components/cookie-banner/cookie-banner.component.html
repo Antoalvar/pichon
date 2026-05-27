@@ -1,0 +1,19 @@
+@if (show() === null) {
+<div class="cookie-banner" role="dialog" aria-label="Consentimiento de cookies">
+  <div class="cookie-content">
+    <div class="cookie-icon">🍪</div>
+    <div class="cookie-text">
+      <p class="cookie-title">¡Hola! Usamos cookies</p>
+      <p class="cookie-description">
+        Utilizamos cookies propias y de terceros (Google Analytics) para mejorar
+        tu experiencia y analizar el tráfico del sitio.
+        <a routerLink="/politica-de-cookies">Más información</a>
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-accept" (click)="accept()">Aceptar</button>
+      <button class="btn-reject" (click)="reject()">Rechazar</button>
+    </div>
+  </div>
+</div>
+}

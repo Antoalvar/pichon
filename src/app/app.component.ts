@@ -1,10 +1,12 @@
 import { Component, DOCUMENT, PLATFORM_ID, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { SubscribeComponent } from './components/subscribe-component/subscribe.component';
 import { NavbarComponent } from './components/app-navbar/app-navbar.component';
 import { GuideDownloadModalComponent } from './components/guide-download-modal/guide-download-modal.component';
+import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
+import { CookieConsentService } from './services/cookie-consent.service';
 import { PostsFacade } from './facades/posts.facade';
 import { SeoService } from './services/seo.service';
 
@@ -12,7 +14,7 @@ declare function gtag(...args: unknown[]): void;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SubscribeComponent, NavbarComponent, GuideDownloadModalComponent],
+  imports: [RouterOutlet, RouterLink, SubscribeComponent, NavbarComponent, GuideDownloadModalComponent, CookieBannerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -22,6 +24,7 @@ export class AppComponent {
   private readonly seoService = inject(SeoService);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
+  private readonly cookieConsent = inject(CookieConsentService);
 
   readonly showAgendaModal = signal<boolean>(false);
 
@@ -29,6 +32,8 @@ export class AppComponent {
   isSubscribeButtonVisible = signal<boolean>(true);
 
   constructor() {
+    this.cookieConsent.initializeFromStoredConsent();
+
     this.seoService.setJsonLd({
       '@context': 'https://schema.org',
       '@graph': [
@@ -53,7 +58,10 @@ export class AppComponent {
       .subscribe((val) => {
         const segment = val.url.split('/')[1];
         const hideSubscribe =
-          segment === 'subscribe' || segment === 'backOffice_101';
+          segment === 'unsubscribe' ||
+          segment === 'politica-de-privacidad' ||
+          segment === 'politica-de-cookies' ||
+          segment === 'backOffice_101';
         this.isSubscribeButtonVisible.set(!hideSubscribe);
         if (hideSubscribe) {
           this.isSubscribeModalVisible = false;

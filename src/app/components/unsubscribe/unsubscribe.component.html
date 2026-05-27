@@ -1,0 +1,39 @@
+<div class="unsubscribe-wrapper">
+  @if (!unsubscribeSuccess()) {
+  <h2>Darse de baja</h2>
+  <p class="subtitle">
+    Lamentamos que te vayas. Introduce tu email para cancelar tu suscripción a
+    la newsletter.
+  </p>
+
+  <div class="form-wrapper">
+    <label for="unsubscribe-email">Email*</label>
+    <input
+      [formControl]="emailControl"
+      type="email"
+      id="unsubscribe-email"
+      placeholder="tu@email.com"
+      required
+    />
+  </div>
+
+  @if (errorMessage()) {
+  <p class="error-message">{{ errorMessage() }}</p>
+  }
+
+  <div class="button-wrapper">
+    <button
+      class="unsubscribe-button"
+      [disabled]="emailControl.invalid"
+      (click)="unsubscribe()"
+    >
+      Cancelar suscripción
+    </button>
+  </div>
+  } @else {
+  <h2>¡Hecho!</h2>
+  <p class="success-message">
+    Tu suscripción ha sido cancelada. No recibirás más emails de nuestra parte.
+  </p>
+  }
+</div>
