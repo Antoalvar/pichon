@@ -34,6 +34,13 @@ export class GuiasComponent {
         'Nuestras recomendaciones de los mejores campamentos para niños en Madrid',
       pdfUrl: '/assets/agenda/guia_campamentos_2026.pdf',
     },
+    {
+      image: '/assets/images/portada_rastro.jpg',
+      title: 'Guía Rastro de Madrid en Familia',
+      description:
+        'Nuestras recomendaciones de los mejores planes para familias en el Rastro de Madrid',
+      pdfUrl: '/assets/agenda/guia_rastro_familias.pdf',
+    },
   ]);
 
   readonly selectedGuide = signal<GuideItem | null>(null);
@@ -55,4 +62,3 @@ export class GuiasComponent {
     this.selectedGuide.set(null);
   }
 }
-
