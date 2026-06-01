@@ -11,7 +11,7 @@
 
   .last-updated {
     font-size: 0.85rem;
-    color: #666;
+    color: #1a1a1a;
     margin-bottom: 2rem;
   }
 
@@ -42,8 +42,10 @@
       }
     }
 
-    a {
-      color: rgb(0, 150, 76);
+    a[target="_blank"],
+    a[href^="http"],
+    a[href^="mailto:"] {
+      color: #3d00c5f0;
       text-decoration: underline;
     }
 
