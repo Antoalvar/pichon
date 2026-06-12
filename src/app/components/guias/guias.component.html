@@ -1,7 +1,7 @@
 <main class="guias-container">
   <h1 class="visually-hidden">Guías — Pichón</h1>
   <div class="guides-wrapper">
-    @for (guide of guides(); track $index) {
+    @for (guide of guides(); track guide.index) {
       <article class="guide-item-wrap">
         <div class="img-wrapper">
           <img [src]="guide.image" [alt]="guide.title" loading="lazy" />
